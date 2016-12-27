@@ -1,0 +1,27 @@
+@import '../../node_modules/jeet/scss/index';
+@import '../../node_modules/breakpoint-sass/stylesheets/breakpoint';
+@import 'variables';
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  @include clearfix;
+}
+
+.test {
+  color: red;
+  background: yellowgreen;
+
+  @include breakpoint($md) {
+    background: yellow;
+    @include column(1/2, $cycle: 2);
+  }
+
+  @include breakpoint($lg) {
+    background: orange;
+    @include column(1/4, $cycle: 4);
+  }
+
+}
+
+
