@@ -1,0 +1,151 @@
+//INVOICE CONTENT
+.invoice {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: $white;
+  padding: 4rem 3rem;
+  min-height: 780px;
+  text-align: center;
+  box-shadow: 5px 5px 5px rgba(0,0,0, .05);
+
+  &-data {
+    width: 100%;
+    align-self: center;
+    padding: 0 0 10rem;
+  }
+
+  &-from {
+    width: 100%;
+    border-bottom: 1px solid $light-gray;
+    padding-bottom: .5rem;
+    font-size: 1rem;
+  }
+
+  &-to {
+    font-family: Museo-500;
+    margin-top: 2rem;
+    width: 50%;
+  }
+
+  &-header {
+    width: 100%;
+    font-size: 2rem;
+    font-family: Museo-500;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &-date {
+    margin: 2rem 0 1rem;
+    font-size: 1.1rem;
+    font-family: Museo-500;
+
+    &-label {
+      min-width: 15rem;
+      font-weight: bold;
+    }
+
+    &-date {
+      width: 100%;
+    }
+
+  }
+
+  &-calc {
+    border-top: 1px solid $light-gray;
+
+    &-row {
+      display: flex;
+      border-bottom: 1px solid $light-gray;
+
+      &__header {
+
+        .invoice-calc-input {
+          font-family: Museo-500;
+        }
+
+      }
+
+      &__summary {
+        border-bottom: 0;
+
+        .invoice-calc-input {
+          background: $light-gray;
+          border-right: 1px solid $white;
+
+          &:last-of-type {
+            border-right: 0;
+          }
+        }
+      }
+    }
+
+    &-summary {
+      margin-top: 2rem;
+    }
+
+    &-input {
+      padding: .5rem 0;
+      text-align: center;
+      font-size: 1rem;
+
+      &:focus {
+        padding: .5rem 0;
+        background: $light-gray;
+      }
+
+    }
+
+    &-number {
+      flex: 1
+    }
+
+    &-name {
+      flex: 8
+    }
+    &-count {
+      flex: 2
+    }
+
+    &-price-netto {
+      flex: 4
+    }
+
+    &-value-netto {
+      flex: 4
+    }
+
+    &-vat {
+      flex: 2
+    }
+
+    &-vat-value {
+      flex: 4
+    }
+
+    &-full-value {
+      flex: 4
+    }
+
+  }
+
+  &-summary {
+    margin-top: 4rem;
+
+    &-row {
+      width: 100%;
+    }
+
+  }
+
+  @include breakpoint($md) {
+    @include column(3/4, $cycle: 2);
+
+    &:after {
+      display: none;
+    }
+
+  }
+}

@@ -1,0 +1,49 @@
+//LEFT NAVIGATION
+.main-nav {
+  text-align: center;
+
+  &-logo {
+    max-width: 16rem;
+    margin-bottom: 1rem;
+  }
+
+  &-header {
+    font-family: Museo-500;
+    letter-spacing: .05rem;
+    color: $violet;
+  }
+
+  &-menu {
+    margin-top: 2rem;
+
+    &-list {
+
+      &-item {
+
+        &-link {
+          display: inline-block;
+          color: $dark-gray;
+          font-size: 1.6rem;
+          padding: .3rem 0;
+          text-decoration: none;
+
+          &:hover {
+            color: $violet;
+          }
+
+        }
+      }
+    }
+  }
+
+  &-footer {
+    display: inline-block;
+    font-size: 1rem;
+    margin: 4rem 0;
+  }
+
+  @include breakpoint($md) {
+    @include column(1/4, $cycle: 2);
+  }
+
+}
