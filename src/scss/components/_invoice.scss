@@ -18,6 +18,7 @@
 
   &-from {
     width: 100%;
+    min-height: 5rem;
     border-bottom: 1px solid $light-gray;
     padding-bottom: .5rem;
     font-size: 1rem;
@@ -58,10 +59,12 @@
 
     &-row {
       display: flex;
+      flex-direction: column;
       border-bottom: 1px solid $light-gray;
 
       &__header {
 
+        display: none;
         .invoice-calc-input {
           font-family: Museo-500;
         }
@@ -145,6 +148,18 @@
 
     &:after {
       display: none;
+    }
+
+    .invoice-from {
+      min-height: initial;
+    }
+
+    .invoice-calc-row {
+      flex-direction: row;
+
+      &__header {
+        display: flex;
+      }
     }
 
   }
