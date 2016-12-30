@@ -45,7 +45,7 @@
       </div>
 
       <section class="invoice-summary">
-        <span rows="1" class="invoice-summary-row u-bold invoice-calc-label">Do zapłaty:</span>
+        <span rows="1" class="invoice-summary-row u-bold invoice-calc-label">Do zapłaty: {{ bruttoValue }}</span>
         <textarea rows="1" class="invoice-summary-row u-text-xs" placeholder="Słownie: sto złoty osiem groszy"></textarea>
         <textarea rows="1" class="invoice-summary-row u-bold u-mt-15" placeholder="Sposób płatności: przelew na konto"></textarea>
         <textarea rows="1" class="invoice-summary-row u-text-xs" placeholder="Numer konta: (mbank) XX XXXX XXXX XXXX XXXX XXXX XXXX"></textarea>
