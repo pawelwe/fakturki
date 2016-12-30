@@ -1,19 +1,22 @@
 <template>
   <div id="app" class="container" v-cloak>
     <navigation></navigation>
-    <invoice></invoice>
+    <new-invoice></new-invoice>
   </div>
 </template>
 
 <script>
   import navigation from './components/Navigation.vue'
-  import invoice from './components/Invoice.vue'
+  import newInvoice from './components/NewInvoice.vue'
 
   export default {
     name: 'app',
     components: {
       navigation,
-      invoice
+      newInvoice
+    },
+    created () {
+      this.$store.dispatch('initInvoices')
     },
     data () {
       return {
