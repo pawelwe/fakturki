@@ -55,6 +55,7 @@
   }
 
   &-calc {
+    position: relative;
     border-top: 1px solid $light-gray;
 
     &-row {
@@ -62,12 +63,14 @@
       flex-direction: column;
       align-items: center;
       border-bottom: 1px solid $light-gray;
+      position: relative;
 
       &__header {
         display: none;
 
         .invoice-calc-input {
           font-family: Museo-500;
+          background: $lightest-gray;
         }
 
       }
@@ -77,20 +80,92 @@
       }
     }
 
+    &-add-row-btn {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transform: translateY(140%);
+      font-family: Museo-500;
+      cursor: pointer;
+
+      padding: 0 0.3rem;
+      border-radius: 50%;
+      transition: all 150ms ease-in;
+      border: 1px solid $violet;
+      background: $white;
+      color: $violet;
+
+      &:hover {
+        transition: all 150ms ease-out;
+        color: $white;
+        background: $violet;
+        border: 1px solid $violet;
+      }
+
+    }
+
+    &-remove-row-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0, -50%) scaleY(.8);
+      cursor: pointer;
+      font-size: 1.3rem;
+      //height: .8rem;
+
+      font-family: Museo-500;
+
+      padding: 0 0.1rem;
+
+      transition: all 150ms ease-in;
+      background: $white;
+      color: $violet;
+
+      &:hover {
+        transition: all 150ms ease-out;
+        color: $white;
+        background: $violet;
+        border: 1px solid $violet;
+      }
+
+    }
+
     &-summary {
       margin-top: 2rem;
+
+      &-output {
+        background: $lightest-gray;
+        border-top: 1px solid $light-gray;
+        border-bottom: 1px solid $light-gray;
+        border-right: 1px solid $light-gray;
+        padding: .5rem 0;
+        text-align: center;
+        font-size: 1rem;
+        cursor: default;
+      }
+
     }
 
     &-input, &-output {
       padding: .5rem 0;
       text-align: center;
       font-size: 1rem;
+    }
 
+    &-input {
       &:focus {
         padding: .5rem 0;
         background: $light-gray;
       }
+      &::placeholder {
+        //color: red;
+      }
+    }
 
+    &-output {
+      font-size: .9rem;
+      color: $medium-gray;
+      cursor: default;
     }
 
     &-label {
@@ -98,50 +173,42 @@
       margin-bottom: .5rem;
     }
 
-    &-output {
-      background: $light-gray;
-      border-right: 1px solid $white;
-
-      &:last-child {
-        border-right: 0;
-      }
-    }
-
     &-number {
-      flex: 1
+      flex: 1;
     }
 
     &-name {
-      flex: 8
+      flex: 8;
     }
     &-count {
-      flex: 2
+      flex: 2;
     }
 
     &-price-netto {
-      flex: 4
+      flex: 4;
     }
 
     &-value-netto {
-      flex: 4
+      flex: 4;
     }
 
     &-vat {
-      flex: 2
+      flex: 2;
     }
 
     &-vat-value {
-      flex: 4
+      flex: 4;
     }
 
     &-full-value {
-      flex: 4
+      flex: 4;
     }
 
   }
 
   &-summary {
     margin-top: 4rem;
+    cursor: default;
 
     &-row {
       width: 100%;

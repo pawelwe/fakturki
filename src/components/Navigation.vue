@@ -11,6 +11,9 @@
           <a href="#" class="main-nav-menu-list-item-link">Zapisz</a>
         </li>
         <li class="main-nav-menu-list-item">
+          <a href="#" class="main-nav-menu-list-item-link">Ustaw jako wzór</a>
+        </li>
+        <li class="main-nav-menu-list-item">
           <a href="#" class="main-nav-menu-list-item-link">Lista</a>
         </li>
       </ul>

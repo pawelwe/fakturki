@@ -6,17 +6,23 @@ export default {
   labels: {
     nrLabel: 'Nr.',
     serviceNameLabel: 'Nazwa usługi',
-    serviceNameValue: 'Usługi grabarskie',
     ammountLabel: 'Ilość',
-    ammountValue: 2,
     priceNettoLabel: 'Cena netto',
-    priceNettoValue: 67.89,
     valueNettoLabel: 'Wartość',
     valRateLabel: 'VAT',
-    vatRateValue: '23%',
     valValueLabel: 'Kwota VAT',
+    vatRateValue: '-',
     fullValueLabel: 'W. Brutto'
   },
+  services: [
+    {
+      id: 1,
+      name: 'Usługi grabarskie 1',
+      ammount: 1,
+      priceNetto: 123,
+      vat: '23%'
+    }
+  ],
   valueInWords: 'Słownie: sto złoty osiem groszy',
   paymentType: 'Sposób płatności: przelew na konto',
   accountNumber: 'Numer konta: (mbank) XX XXXX XXXX XXXX XXXX XXXX XXXX'

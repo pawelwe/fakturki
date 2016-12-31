@@ -7,7 +7,7 @@
 
 <script>
   import navigation from './components/Navigation.vue'
-  import newInvoice from './components/NewInvoice.vue'
+  import newInvoice from './components/new-invoice/NewInvoice.vue'
 
   export default {
     name: 'app',
@@ -16,12 +16,7 @@
       newInvoice
     },
     created () {
-      this.$store.dispatch('initInvoices')
-    },
-    data () {
-      return {
-        msg: 'Welcome to Your Vue.js App'
-      }
+      this.$store.dispatch('loadTemplate')
     }
   }
 </script>
