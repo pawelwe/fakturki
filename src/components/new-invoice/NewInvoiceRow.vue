@@ -1,6 +1,6 @@
 <template>
   <div class="invoice-calc-row">
-    <span class="invoice-calc-output invoice-calc-number">{{ service.id }}</span>
+    <span class="invoice-calc-output invoice-calc-number">{{ index + 1 }}</span>
     <textarea rows="1" class="invoice-calc-input invoice-calc-name" v-model="service.name" :placeholder="service.name"></textarea>
     <textarea rows="1" class="invoice-calc-input invoice-calc-count"  v-model="service.ammount" :placeholder="service.ammount"></textarea>
     <textarea rows="1" class="invoice-calc-input invoice-calc-price-netto"  v-model="service.priceNetto" :placeholder="service.priceNetto"></textarea>
@@ -24,12 +24,6 @@
       },
       bruttoValue () {
         return (parseInt(this.nettoValue) + parseInt(this.vatValue)).toFixed(2)
-      }
-    },
-    methods: {
-      removeInvoiceRow (index, $event) {
-        this.$store.commit('REMOVE_ROW', this.index)
-        console.log('index: ', index, 'event: ', $event)
       }
     }
   }

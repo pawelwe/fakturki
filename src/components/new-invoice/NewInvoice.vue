@@ -19,7 +19,7 @@
       <!-- CALC SECTION -->
       <div class="invoice-calc">
         <invoice-header-row :invoiceTemplate="invoiceTemplate"></invoice-header-row>
-        <invoice-row v-for="(service, key, index) in invoiceTemplate.services" :service="service" v-on:removeRow="removeRow(key)"  ></invoice-row>
+        <invoice-row v-for="(service, index, key) in invoiceTemplate.services" :service="service" :index="index" v-on:removeRow="removeRow(index)"  ></invoice-row>
         <a href="#" class="invoice-calc-add-row-btn" @click="addInvoiceRow">+</a>
       </div>
 
@@ -100,7 +100,6 @@
       },
       removeRow (index) {
         this.$store.commit('REMOVE_ROW', index)
-        console.log(index)
       }
     }
   }
