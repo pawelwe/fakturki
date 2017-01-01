@@ -12,7 +12,13 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
-    props: ['invoiceTemplate', 'nettoValue', 'vatValue', 'bruttoValue']
+    computed: mapGetters([
+      'nettoValue',
+      'vatValue',
+      'bruttoValue'
+    ]),
+    props: ['invoiceTemplate']
   }
 </script>

@@ -11,7 +11,7 @@
           <a href="#" class="main-nav-menu-list-item-link">Zapisz</a>
         </li>
         <li class="main-nav-menu-list-item">
-          <a href="#" class="main-nav-menu-list-item-link">Ustaw jako wzór</a>
+          <a href="#" class="main-nav-menu-list-item-link" @click="saveTemplate">Ustaw jako wzór</a>
         </li>
         <li class="main-nav-menu-list-item">
           <a href="#" class="main-nav-menu-list-item-link">Lista</a>
@@ -31,6 +31,13 @@
     data () {
       return {
         appName: 'FAKTURKI'
+      }
+    },
+    methods: {
+      saveTemplate (e) {
+        e.preventDefault()
+        console.log('Template Saved...')
+        this.$store.commit('SAVE_TEMPLATE', this.$store.getters.getTemplate)
       }
     }
   }

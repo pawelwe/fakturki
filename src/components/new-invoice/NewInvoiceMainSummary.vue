@@ -8,7 +8,11 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
-    props: ['bruttoValue', 'invoiceTemplate']
+    props: ['invoiceTemplate'],
+    computed: mapGetters([
+      'bruttoValue'
+    ])
   }
 </script>

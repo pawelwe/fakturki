@@ -14,9 +14,6 @@
     components: {
       navigation,
       newInvoice
-    },
-    created () {
-      this.$store.dispatch('loadTemplate')
     }
   }
 </script>
