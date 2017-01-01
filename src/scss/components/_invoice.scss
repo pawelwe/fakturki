@@ -106,9 +106,9 @@
 
     &-remove-row-btn {
       position: absolute;
-      right: .5rem;
+      right: .4rem;
       top: 50%;
-      transform: translate(0, -50%) scaleY(.8);
+      transform: translate(0, -55%) scaleY(.8);
       cursor: pointer;
       font-size: 1.3rem;
       font-family: Museo-500;
@@ -121,7 +121,6 @@
         transition: all 150ms ease-out;
         color: $white;
         background: $violet;
-        border: 1px solid $violet;
       }
 
     }
@@ -149,12 +148,12 @@
     }
 
     &-input {
+      line-height: 1.5;
+      overflow: hidden;
       &:focus {
+        overflow: hidden;
         padding: .5rem 0;
         background: $light-gray;
-      }
-      &::placeholder {
-        //color: red;
       }
     }
 

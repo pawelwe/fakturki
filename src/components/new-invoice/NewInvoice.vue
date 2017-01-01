@@ -2,10 +2,10 @@
   <main class="invoice">
 
     <!-- COMPANY DATA SECTION -->
-    <section>
+    <header>
       <invoice-from :invoiceTemplate="invoiceTemplate"></invoice-from>
       <invoice-to :invoiceTemplate="invoiceTemplate"></invoice-to>
-    </section>
+    </header>
 
     <!-- DATA SECTION -->
     <section class="invoice-data">
@@ -19,7 +19,9 @@
       <!-- CALC SECTION -->
       <div class="invoice-calc">
         <invoice-header-row :invoiceTemplate="invoiceTemplate"></invoice-header-row>
-        <invoice-row v-for="(service, index, key) in invoiceTemplate.services" :service="service" :index="index" v-on:removeRow="removeRow(index)"  ></invoice-row>
+        <transition-group appear name="list" tag="ul" mode="out-in">
+          <invoice-row v-for="(service, index, key) in invoiceTemplate.services" :service="service" :index="index" :key="service" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
+        </transition-group>
         <a href="#" class="invoice-calc-add-row-btn" @click="addInvoiceRow">+</a>
       </div>
 
@@ -36,25 +38,17 @@
   </main>
 </template>
 
-
-
 <script>
   import invoiceFrom from './NewInvoiceFrom'
   import invoiceTo from './NewInvoiceTo'
   import invoiceHeader from './NewInvoiceHeader'
   import invoiceDate from './NewInvoiceDate'
-//  import invoiceTemplate from '../../data/invoiceTemplate'
   import invoiceHeaderRow from './NewInvoiceHeaderRow'
   import invoiceRow from './NewInvoiceRow'
   import calcSummary from './NewInvoiceCalcSummary'
   import mainSummary from './NewInvoiceMainSummary'
 
   export default {
-    data: function () {
-      return {
-        template: {}
-      }
-    },
     components: {
       invoiceFrom,
       invoiceTo,
@@ -79,12 +73,12 @@
       vatValue () {
         let fullVatValue = 0
         for (let i = 0; i < this.invoiceTemplate.services.length; i++) {
-          fullVatValue += (this.invoiceTemplate.services[i].priceNetto * this.invoiceTemplate.services[i].ammount) * (0 + '.' + parseInt(this.invoiceTemplate.services[i].vat.replace(/%/g, '')))
+          fullVatValue += (this.invoiceTemplate.services[i].priceNetto * this.invoiceTemplate.services[i].ammount) * (0 + '.' + this.invoiceTemplate.services[i].vat.replace(/%/g, ''))
         }
-        return parseInt(fullVatValue).toFixed(2)
+        return parseFloat(fullVatValue).toFixed(2)
       },
       bruttoValue () {
-        return (parseInt(this.nettoValue) + parseInt(this.vatValue)).toFixed(2)
+        return (parseFloat(this.nettoValue) + parseFloat(this.vatValue)).toFixed(2)
       }
     },
     methods: {
@@ -92,21 +86,17 @@
         e.preventDefault()
         this.$store.commit('ADD_ROW', {
           id: this.$store.getters.getTemplate.services.length + 1,
-          name: 'Pielenie ogródka',
-          ammount: 1,
-          priceNetto: 1,
-          vat: '23%'
+          name: this.invoiceTemplate.services[0].name,
+          ammount: this.invoiceTemplate.services[0].ammount,
+          priceNetto: this.invoiceTemplate.services[0].priceNetto,
+          vat: this.invoiceTemplate.services[0].vat
         })
       },
-      removeRow (index) {
-        this.$store.commit('REMOVE_ROW', index)
+      removeInvoiceRow (index) {
+        this.$store.getters.getTemplate.services.length > 1 ? this.$store.commit('REMOVE_ROW', index) : false
       }
     }
   }
 </script>
-
-<style lang="scss">
-  @import '../../scss/_custom.scss';
-</style>
 
 

@@ -36,8 +36,4 @@
   }
 </script>
 
-<style lang="scss">
-  @import '../scss/_custom.scss';
-</style>
-
 
