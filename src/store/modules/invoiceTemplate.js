@@ -1,18 +1,19 @@
 import invoiceTemplate from '../../data/invoiceTemplate'
 
 const state = {
-  template: invoiceTemplate
+  activeTemplate: invoiceTemplate,
+  savedTemplate: invoiceTemplate
 }
 
 const mutations = {
-  'LOAD_TEMPLATE' (state, template) {
-    state.template = template
+  'LOAD_INVOICE_TEMPLATE' (state) {
+    state.activeTemplate = JSON.parse(JSON.stringify(state.savedTemplate))
   },
-  'SAVE_TEMPLATE' (state, newTemplate) {
-    state.template = newTemplate
+  'SAVE_INVOICE_TEMPLATE' (state) {
+    state.savedTemplate = JSON.parse(JSON.stringify(state.activeTemplate))
   },
-  'ADD_ROW' (state, {id, name, ammount, priceNetto, vat}) {
-    state.template.services.push({
+  'ADD_INVOICE_ROW' (state, {id, name, ammount, priceNetto, vat}) {
+    state.activeTemplate.services.push({
       id,
       name,
       ammount,
@@ -21,41 +22,53 @@ const mutations = {
     }
     )
   },
-  'REMOVE_ROW' (state, index) {
-    state.template.services.splice(index, 1)
+  'REMOVE_INVOICE_ROW' (state, index) {
+    state.activeTemplate.services.splice(index, 1)
   }
 }
 
-// const actions = {
-//   loadTemplate: ({commit}) => {
-//     commit('LOAD_TEMPLATE', invoiceTemplate)
-//   },
-//   saveTemplate: ({commit}) => {
-//     commit('SAVE_TEMPLATE', invoiceTemplate)
-//   },
-//   addRow: ({commit}) => {
-//     commit('ADD_ROW', invoiceTemplate)
-//   }
-// }
+// ASYNC
+const actions = {
+  loadInvoiceTemplate: ({commit}) => {
+    commit('LOAD_INVOICE_TEMPLATE')
+  },
+  saveInvoiceTemplate: ({commit}) => {
+    commit('SAVE_INVOICE_TEMPLATE')
+  },
+  addInvoiceRow: ({commit}, row) => {
+    commit('ADD_INVOICE_ROW', row)
+  },
+  removeInvoiceRow: ({commit}, index) => {
+    commit('REMOVE_INVOICE_ROW', index)
+  },
+  asyncLoadTemplate: ({commit}) => {
+    setTimeout(() => {
+      commit('LOAD_INVOICE_TEMPLATE', invoiceTemplate)
+    }, 1000)
+  }
+}
 
 const getters = {
   getTemplate: state => {
-    return state.template
+    return state.activeTemplate
   },
   servicesLength: state => {
-    return state.template.services.length
+    return state.activeTemplate.services.length
+  },
+  templateServicesLength: state => {
+    return state.savedTemplate.services.length
   },
   nettoValue: state => {
     let fullNettoValue = 0
-    for (let i = 0; i < state.template.services.length; i++) {
-      fullNettoValue += state.template.services[i].priceNetto * state.template.services[i].ammount
+    for (let i = 0; i < state.activeTemplate.services.length; i++) {
+      fullNettoValue += state.activeTemplate.services[i].priceNetto * state.activeTemplate.services[i].ammount
     }
     return parseFloat(fullNettoValue).toFixed(2)
   },
   vatValue: state => {
     let fullVatValue = 0
-    for (let i = 0; i < state.template.services.length; i++) {
-      fullVatValue += state.template.services[i].priceNetto * (0 + '.' + state.template.services[i].vat.replace(/%/g, ''))
+    for (let i = 0; i < state.activeTemplate.services.length; i++) {
+      fullVatValue += state.activeTemplate.services[i].priceNetto * (0 + '.' + state.activeTemplate.services[i].vat.replace(/%/g, ''))
     }
     return parseFloat(fullVatValue).toFixed(2)
   },
@@ -67,6 +80,6 @@ const getters = {
 export default {
   state,
   mutations,
-  // actions,
+  actions,
   getters
 }

@@ -1,7 +1,5 @@
 <template>
-  <transition name="fade" appear>
     <main class="invoice">
-
       <!-- COMPANY DATA SECTION -->
       <header>
         <invoice-from :invoiceTemplate="invoiceTemplate"></invoice-from>
@@ -37,7 +35,6 @@
       <!-- FOOTER PLACEHOLDER (FLEX) -->
       <footer class="placeholder"></footer>
     </main>
-  </transition>
 </template>
 
 <script>
@@ -49,6 +46,7 @@
   import invoiceRow from './NewInvoiceRow'
   import calcSummary from './NewInvoiceCalcSummary'
   import mainSummary from './NewInvoiceMainSummary'
+  import { mapActions } from 'vuex'
 
   export default {
     components: {
@@ -67,9 +65,13 @@
       }
     },
     methods: {
+      ...mapActions([
+        'addInvoiceRow',
+        'removeInvoiceRow'
+      ]),
       addInvoiceRow (e) {
         e.preventDefault()
-        this.$store.commit('ADD_ROW', {
+        this.$store.dispatch('addInvoiceRow', {
           id: this.$store.getters.servicesLength + 1,
           name: this.invoiceTemplate.services[0].name,
           ammount: this.invoiceTemplate.services[0].ammount,
@@ -78,7 +80,7 @@
         })
       },
       removeInvoiceRow (index) {
-        this.$store.getters.servicesLength > 1 ? this.$store.commit('REMOVE_ROW', index) : false
+        this.$store.getters.servicesLength > 1 ? this.$store.dispatch('removeInvoiceRow', index) : false
       }
     }
   }

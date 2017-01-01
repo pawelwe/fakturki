@@ -1,7 +1,8 @@
 <template>
   <div id="app" class="container" v-cloak>
     <navigation></navigation>
-    <new-invoice></new-invoice>
+    <!--<new-invoice></new-invoice>-->
+    <router-view></router-view>
   </div>
 </template>
 
