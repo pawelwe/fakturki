@@ -15,13 +15,21 @@
     font-family: Museo-500;
     font-size: 1.2rem;
     min-height: 16rem;
-    padding: 0 0 2rem;
+    padding: 0;
+  }
+
+  .vex-dialog-buttons {
+    margin-top: 2rem;
   }
 
   .vex-dialog-button {
     float: none;
     margin: 0 .5rem;
     min-width: 10rem;
+  }
+
+  .vex-dialog-message {
+    font-size: 1.5rem;
   }
 
 }

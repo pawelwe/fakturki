@@ -6,13 +6,17 @@
     <h1 class="main-nav-header">{{ appName }}</h1>
     <nav class="main-nav-menu">
       <ul class="main-nav-menu-list">
-        <li class="main-nav-menu-list-item" @click="loadTemplate">
+        <li class="main-nav-menu-list-item">
+          <router-link class="main-nav-menu-list-item-link" v-if="$route.path !== '/new-invoice'" to="/new-invoice">Nowa fakturka</router-link>
+        </li>
+        <!-- Start a new invoice -->
+        <li class="main-nav-menu-list-item" @click="loadTemplate" v-if="$route.path === '/new-invoice'">
           <router-link class="main-nav-menu-list-item-link" to="/new-invoice">Nowa fakturka</router-link>
         </li>
         <li class="main-nav-menu-list-item" v-if="$route.path === '/new-invoice'">
-          <a href="#" class="main-nav-menu-list-item-link" @click="saveTemplate">Ustaw jako wzór</a>
+          <a href="#" class="main-nav-menu-list-item-link" @click="saveTemplate">Zapisz jako wzór</a>
         </li>
-        <li class="main-nav-menu-list-item" v-if="$route.path == '/new-invoice'">
+        <li class="main-nav-menu-list-item" v-if="$route.path === '/new-invoice'">
           <a href="#" class="main-nav-menu-list-item-link">Zapisz</a>
         </li>
         <li class="main-nav-menu-list-item">
@@ -47,8 +51,10 @@
         e.preventDefault()
         // TODO get rid of that
         var that = this
+        vex.dialog.buttons.YES.text = 'Tak'
+        vex.dialog.buttons.NO.text = 'Nie'
         vex.dialog.confirm({
-          message: 'Override the template?',
+          message: 'Zapisać jako wzór?',
           callback: function (value) {
             if (value) {
               console.info('Template saved...')
@@ -64,9 +70,10 @@
         var that = this
         console.info(this.$route.path, that.$store.getters.getActiveTemplate !== invoiceTemplate)
 //        if (this.$route.path === '/new-invoice') {
-
+        vex.dialog.buttons.YES.text = 'Tak'
+        vex.dialog.buttons.NO.text = 'Nie'
         vex.dialog.confirm({
-          message: 'Start a new Fakturka?',
+          message: 'Nowa Fakturka?',
           callback: function (value) {
             if (value) {
               console.info('Template Loaded...')
