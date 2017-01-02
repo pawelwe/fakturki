@@ -20,7 +20,7 @@
           <invoice-header-row :invoiceTemplate="invoiceTemplate"></invoice-header-row>
           <!--<transition-group appear name="list" tag="ul" mode="out-in">-->
           <ul>
-            <invoice-row v-for="(service, index, key) in invoiceTemplate.services" :service="service" :index="index" :key="service" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
+            <invoice-row v-for="(service, index, key) in serviceRows" :service="service" :index="index" :key="service" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
           </ul>
           <!--</transition-group>-->
           <a href="#" class="invoice-calc-add-row-btn" @click="addInvoiceRow">+</a>
@@ -40,14 +40,14 @@
 </template>
 
 <script>
-  import invoiceFrom from './NewInvoiceFrom'
-  import invoiceTo from './NewInvoiceTo'
-  import invoiceHeader from './NewInvoiceHeader'
-  import invoiceDate from './NewInvoiceDate'
-  import invoiceHeaderRow from './NewInvoiceHeaderRow'
-  import invoiceRow from './NewInvoiceRow'
-  import calcSummary from './NewInvoiceCalcSummary'
-  import mainSummary from './NewInvoiceMainSummary'
+  import invoiceFrom from './new-invoice/NewInvoiceFrom'
+  import invoiceTo from './new-invoice/NewInvoiceTo'
+  import invoiceHeader from './new-invoice/NewInvoiceHeader'
+  import invoiceDate from './new-invoice/NewInvoiceDate'
+  import invoiceHeaderRow from './new-invoice/NewInvoiceHeaderRow'
+  import invoiceRow from './new-invoice/NewInvoiceRow'
+  import calcSummary from './new-invoice/NewInvoiceCalcSummary'
+  import mainSummary from './new-invoice/NewInvoiceMainSummary'
   import { mapActions } from 'vuex'
 
   export default {
@@ -63,7 +63,10 @@
     },
     computed: {
       invoiceTemplate () {
-        return this.$store.getters.getTemplate
+        return this.$store.getters.getActiveTemplate
+      },
+      serviceRows () {
+        return this.$store.getters.getActiveTemplate.services
       }
     },
     methods: {
@@ -73,7 +76,7 @@
       ]),
       addInvoiceRow (e) {
         e.preventDefault()
-        this.$store.dispatch('addInvoiceRow', {
+        this.serviceRows.push({
           id: this.$store.getters.servicesLength + 1,
           name: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].name,
           ammount: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].ammount,
@@ -82,10 +85,8 @@
         })
       },
       removeInvoiceRow (index) {
-        this.$store.getters.servicesLength > 1 ? this.$store.dispatch('removeInvoiceRow', index) : false
+        this.serviceRows.length > 1 ? this.serviceRows.splice(index, 1) : false
       }
     }
   }
 </script>
-
-

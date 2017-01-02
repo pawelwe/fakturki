@@ -8,7 +8,7 @@
 
 <script>
   import navigation from './components/Navigation.vue'
-  import newInvoice from './components/new-invoice/NewInvoice.vue'
+  import newInvoice from './components/NewInvoice.vue'
 
   export default {
     name: 'app',

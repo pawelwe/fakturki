@@ -1,0 +1,27 @@
+.vex.vex-theme-wireframe {
+  padding-top: 160px;
+  padding-bottom: 160px;
+
+  .vex-overlay {
+    background: rgba(0,0,0, .4)
+  }
+
+  .vex-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $black;
+    text-align: center;
+    font-family: Museo-500;
+    font-size: 1.2rem;
+    min-height: 16rem;
+    padding: 0 0 2rem;
+  }
+
+  .vex-dialog-button {
+    float: none;
+    margin: 0 .5rem;
+    min-width: 10rem;
+  }
+
+}
