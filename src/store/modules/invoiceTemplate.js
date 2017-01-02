@@ -1,8 +1,8 @@
 import invoiceTemplate from '../../data/invoiceTemplate'
 
 const state = {
-  activeTemplate: invoiceTemplate,
-  savedTemplate: invoiceTemplate
+  activeTemplate: JSON.parse(JSON.stringify(invoiceTemplate)),
+  savedTemplate: JSON.parse(JSON.stringify(invoiceTemplate))
 }
 
 const mutations = {

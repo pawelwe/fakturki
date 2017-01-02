@@ -29,8 +29,6 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
-
   export default {
     data () {
       return {
@@ -38,9 +36,6 @@
       }
     },
     methods: {
-      ...mapActions([
-        'saveInvoiceTemplate'
-      ]),
       saveTemplate (e) {
         e.preventDefault()
         this.$store.dispatch('saveInvoiceTemplate', this.$store.getters.getTemplate)

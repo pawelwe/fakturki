@@ -75,10 +75,10 @@
         e.preventDefault()
         this.$store.dispatch('addInvoiceRow', {
           id: this.$store.getters.servicesLength + 1,
-          name: this.invoiceTemplate.services[0].name,
-          ammount: this.invoiceTemplate.services[0].ammount,
-          priceNetto: this.invoiceTemplate.services[0].priceNetto,
-          vat: this.invoiceTemplate.services[0].vat
+          name: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].name,
+          ammount: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].ammount,
+          priceNetto: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].priceNetto,
+          vat: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].vat
         })
       },
       removeInvoiceRow (index) {
