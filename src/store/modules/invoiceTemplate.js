@@ -1,8 +1,10 @@
 import invoiceTemplate from '../../data/invoiceTemplate'
+import invoicesList from '../../data/invoicesList'
 
 const state = {
   activeTemplate: JSON.parse(JSON.stringify(invoiceTemplate)),
-  savedTemplate: JSON.parse(JSON.stringify(invoiceTemplate))
+  savedTemplate: JSON.parse(JSON.stringify(invoiceTemplate)),
+  invoicesList: invoicesList
 }
 
 const mutations = {
@@ -11,11 +13,34 @@ const mutations = {
   },
   'SAVE_INVOICE_TEMPLATE' (state) {
     state.savedTemplate = JSON.parse(JSON.stringify(state.activeTemplate))
+  },
+  'LOAD_INVOICE' (state, index) {
+    state.activeTemplate = JSON.parse(JSON.stringify(state.invoicesList[index]))
+  },
+  'DEL_INVOICE' (state, id) {
+    if (id != null) {
+      state.invoicesList.splice(id, 1)
+    }
+  },
+  'SAVE_INVOICE' (state, id) {
+    let savedTemplate = JSON.parse(JSON.stringify(state.activeTemplate))
+    if (id != null) {
+      id = parseInt(id)
+      state.invoicesList[id] = savedTemplate
+    } else {
+      state.invoicesList.push(savedTemplate)
+    }
   }
 }
 
 // ASYNC
 const actions = {
+  loadInvoice: ({commit, index}) => {
+    commit('LOAD_INVOICE')
+  },
+  saveInvoice: ({commit}) => {
+    commit('SAVE_INVOICE')
+  },
   loadInvoiceTemplate: ({commit}) => {
     commit('LOAD_INVOICE_TEMPLATE')
   },
@@ -52,6 +77,9 @@ const getters = {
   },
   bruttoValue: (state, getters) => {
     return (parseFloat(getters.nettoValue) + parseFloat(getters.vatValue)).toFixed(2)
+  },
+  getInvoicesList: state => {
+    return state.invoicesList
   }
 }
 

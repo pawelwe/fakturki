@@ -48,7 +48,6 @@
   import invoiceRow from './new-invoice/NewInvoiceRow'
   import calcSummary from './new-invoice/NewInvoiceCalcSummary'
   import mainSummary from './new-invoice/NewInvoiceMainSummary'
-  import { mapActions } from 'vuex'
 
   export default {
     components: {
@@ -70,10 +69,6 @@
       }
     },
     methods: {
-      ...mapActions([
-        'addInvoiceRow',
-        'removeInvoiceRow'
-      ]),
       addInvoiceRow (e) {
         e.preventDefault()
         this.serviceRows.push({

@@ -70,14 +70,15 @@
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "url-loader": "^0.5.7",
+    "vex-js": "git+https://github.com/HubSpot/vex.git",
     "vue-loader": "^10.0.0",
+    "vue-moment": "^2.0.2",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.0",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2",
-    "webpack-merge": "^0.14.1",
-    "vex-js": "git+https://github.com/HubSpot/vex.git"
+    "webpack-merge": "^0.14.1"
   },
   "engines": {
     "node": ">= 4.0.0",

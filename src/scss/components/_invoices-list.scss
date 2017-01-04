@@ -1,0 +1,270 @@
+//INVOICE CONTENT
+
+.invoices-thumbs {
+  @include column(1);
+  margin: 2rem 0;
+  &-list {
+    margin-top: 2rem;
+  }
+
+}
+
+
+.invoice-thumb {
+  position: relative;
+
+  &-content {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: $white;
+    position: relative;
+    padding: 1.33rem 1rem;
+    min-height: 280px;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgba(0,0,0, .05);
+    margin: 2rem 0 4rem;
+    border: 1px solid transparent;
+    &:hover {
+      border: 1px solid $medium-gray;
+    }
+  }
+
+  &-remove {
+    position: absolute;
+    right: 0;
+    top: -1.7rem;
+    transform: scale(1.5, 1);
+    cursor: pointer;
+
+    &:hover {
+      color: $violet;
+    }
+
+  }
+
+  &-id {
+    position: absolute;
+    left: 0;
+    top:0;
+    transform: translateY(-1.5rem);
+    font-size: .9rem;
+  }
+
+  &-data {
+    width: 100%;
+    align-self: center;
+    padding: 0 0 8rem;
+  }
+
+  &-from {
+    width: 100%;
+    min-height: 5rem;
+    border-bottom: 1px solid $light-gray;
+    padding-bottom: .1rem;
+    font-size: .33rem;
+  }
+
+  &-to {
+    font-family: Museo-500;
+    margin-top: .66rem;
+    width: 50%;
+    font-size: .4rem;
+    max-width: 33%;
+    display: inline-block;
+    float: right;
+  }
+
+  &-header {
+    width: 100%;
+    font-size: .66rem;
+    font-family: Museo-500;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &-date {
+    margin: .7rem 0 .1rem;
+    font-size: .36rem;
+    font-family: Museo-500;
+
+    &-label {
+      min-width: 5rem;
+      font-weight: bold;
+
+    }
+
+    &-date {
+      display: block;
+      margin: .3rem 0;
+      width: 100%;
+    }
+
+  }
+
+  &-calc {
+    position: relative;
+    border-top: 1px solid $light-gray;
+
+    &-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid $light-gray;
+      position: relative;
+
+      &__header {
+        display: none;
+        padding: .1rem;
+
+        .invoice-thumb-calc-input {
+          font-family: Museo-500;
+          background: $lightest-gray;
+        }
+
+      }
+
+      &__summary {
+        margin-top: .25rem;
+        border-bottom: 0;
+      }
+    }
+
+
+    &-summary {
+      margin-top: .65rem;
+
+      &-output {
+        padding: .15rem 0;
+        text-align: center;
+        font-size: .30rem;
+        cursor: default;
+      }
+
+    }
+
+    &-input, &-output {
+      padding: .12rem 0;
+      text-align: center;
+      font-size: .33rem;
+    }
+
+    &-input {
+      line-height: 0.5;
+      overflow: hidden;
+      &:focus {
+        overflow: hidden;
+        padding: .17rem 0;
+        background: $light-gray;
+      }
+    }
+
+    &-output {
+      font-size: .3rem;
+      color: $medium-gray;
+      cursor: default;
+    }
+
+    &-label {
+      display: inline-block;
+      margin-bottom: .16rem;
+    }
+
+    &-number {
+      flex: 1;
+    }
+
+    &-name {
+      flex: 8;
+    }
+    &-count {
+      flex: 2;
+    }
+
+    &-price-netto {
+      flex: 4;
+    }
+
+    &-value-netto {
+      flex: 4;
+    }
+
+    &-vat {
+      flex: 2;
+    }
+
+    &-vat-value {
+      flex: 4;
+    }
+
+    &-full-value {
+      flex: 4;
+    }
+
+  }
+
+  &-summary {
+    margin-top: 1.3rem;
+    cursor: default;
+    text-align: left;
+
+    &-row {
+      width: 100%;
+      font-size: .4rem;
+      display: block;
+      margin-top: .2rem;
+    }
+
+  }
+
+  @include breakpoint($md) {
+    &:after {
+      display: none;
+    }
+
+    .invoice-thumb {
+      @include column(1/3, $cycle: 3);
+    }
+
+    .invoice-thumb-from {
+      min-height: initial;
+    }
+
+    .invoice-thumb-calc-row {
+      flex-direction: row;
+
+      &__header {
+        display: flex;
+      }
+    }
+  }
+
+}
+
+@include breakpoint($md) {
+
+  .invoices-thumbs {
+    @include column(3/4, $cycle: 2);
+  }
+
+  .invoice-thumb {
+    @include column(1/3, $cycle: 3);
+
+    &-to {
+      float: left;
+    }
+  }
+
+  .invoice-calc-summary-output {
+    background: $lightest-gray;
+    border-top: 1px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
+    border-right: 1px solid $light-gray;
+  }
+
+  .invoice-thumb-remove {
+    top: .4rem;
+  }
+
+}

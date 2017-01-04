@@ -5,10 +5,12 @@ import App from './App'
 import store from './store/store'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
+import VueMoment from 'vue-moment'
 
 /* eslint-disable no-new */
 
 Vue.use(VueRouter)
+Vue.use(VueMoment)
 
 const router = new VueRouter({
   routes,

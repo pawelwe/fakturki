@@ -129,10 +129,6 @@
       margin-top: 2rem;
 
       &-output {
-        background: $lightest-gray;
-        border-top: 1px solid $light-gray;
-        border-bottom: 1px solid $light-gray;
-        border-right: 1px solid $light-gray;
         padding: .5rem 0;
         text-align: center;
         font-size: 1rem;
@@ -229,6 +225,14 @@
         display: flex;
       }
     }
+
+    .invoice-calc-summary-output {
+      background: $lightest-gray;
+      border-top: 1px solid $light-gray;
+      border-bottom: 1px solid $light-gray;
+      border-right: 1px solid $light-gray;
+    }
+
   }
 
 }

@@ -7,20 +7,20 @@
     <nav class="main-nav-menu">
       <ul class="main-nav-menu-list">
         <li class="main-nav-menu-list-item">
-          <router-link class="main-nav-menu-list-item-link" v-if="$route.path !== '/new-invoice'" to="/new-invoice">Nowa fakturka</router-link>
+          <router-link class="main-nav-menu-list-item-link" v-if="$route.path !== '/nowa-fakturka'" to="/nowa-fakturka">Nowa fakturka</router-link>
         </li>
         <!-- Start a new invoice -->
-        <li class="main-nav-menu-list-item" @click="loadTemplate" v-if="$route.path === '/new-invoice'">
-          <router-link class="main-nav-menu-list-item-link" to="/new-invoice">Nowa fakturka</router-link>
+        <li class="main-nav-menu-list-item" @click="loadTemplate" v-if="$route.path === '/nowa-fakturka'">
+          <router-link class="main-nav-menu-list-item-link" to="/nowa-fakturka">Nowa fakturka</router-link>
         </li>
-        <li class="main-nav-menu-list-item" v-if="$route.path === '/new-invoice'">
+        <li class="main-nav-menu-list-item" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
           <a href="#" class="main-nav-menu-list-item-link" @click="saveTemplate">Zapisz jako wzór</a>
         </li>
-        <li class="main-nav-menu-list-item" v-if="$route.path === '/new-invoice'">
-          <a href="#" class="main-nav-menu-list-item-link">Zapisz</a>
+        <li class="main-nav-menu-list-item" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
+          <a href="#" class="main-nav-menu-list-item-link" @click="saveInvoice($route.params.id, $event)">Zapisz</a>
         </li>
         <li class="main-nav-menu-list-item">
-          <a href="#" class="main-nav-menu-list-item-link">Lista</a>
+          <router-link class="main-nav-menu-list-item-link" to="/lista-fakturek">Lista</router-link>
         </li>
       </ul>
     </nav>
@@ -35,7 +35,6 @@
 <script>
   import vex from 'vex-js/src/vex'
   import vexdialog from 'vex-dialog/src/vex.dialog'
-  import invoiceTemplate from '../data/invoiceTemplate'
   vex.registerPlugin(vexdialog)
   vex.defaultOptions.className = 'vex-theme-wireframe'
 
@@ -43,7 +42,7 @@
     data () {
       return {
         appName: 'FAKTURKI',
-        newInvoicePage: false
+        id: this.$route.params.id
       }
     },
     methods: {
@@ -65,11 +64,7 @@
       },
       loadTemplate (e) {
         e.preventDefault()
-        // TODO get rid of that
-        // console.info(this.$store.getters.getActiveTemplate !== this.$store.getters.getSavedTemplate)
         var that = this
-        console.info(this.$route.path, that.$store.getters.getActiveTemplate !== invoiceTemplate)
-//        if (this.$route.path === '/new-invoice') {
         vex.dialog.buttons.YES.text = 'Tak'
         vex.dialog.buttons.NO.text = 'Nie'
         vex.dialog.confirm({
@@ -81,20 +76,22 @@
             }
           }
         })
-
-//        if (that.$store.getters.getActiveTemplate !== invoiceTemplate) {
-//          vex.dialog.confirm({
-//            message: 'Start a new Fakturka?',
-//            callback: function (value) {
-//              if (value) {
-//                console.info('Template Loaded...')
-//                that.$store.dispatch('loadInvoiceTemplate')
-//              }
-//            }
-//          })
-//        } else {
-//          that.$store.dispatch('loadInvoiceTemplate')
-//        }
+      },
+      saveInvoice (number, e) {
+        e.preventDefault()
+        var that = this
+        vex.dialog.buttons.YES.text = 'Tak'
+        vex.dialog.buttons.NO.text = 'Nie'
+        vex.dialog.confirm({
+          message: 'Zapisać fakturkę?',
+          callback: function (value) {
+            if (value) {
+              console.info('Invoice saved...')
+              let invoiceId = number !== undefined ? number - 1 : null
+              that.$store.dispatch('saveInvoice', invoiceId)
+            }
+          }
+        })
       }
     }
   }
