@@ -23,12 +23,14 @@ const mutations = {
     }
   },
   'SAVE_INVOICE' (state, id) {
-    let savedTemplate = JSON.parse(JSON.stringify(state.activeTemplate))
+    let savedInvoice = JSON.parse(JSON.stringify(state.activeTemplate))
+    savedInvoice.creationDate = new Date()
+
     if (id != null) {
       id = parseInt(id)
-      state.invoicesList[id] = savedTemplate
+      state.invoicesList[id] = savedInvoice
     } else {
-      state.invoicesList.push(savedTemplate)
+      state.invoicesList.push(savedInvoice)
     }
   }
 }
