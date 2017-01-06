@@ -7,7 +7,7 @@
     <nav class="main-nav-menu">
       <ul class="main-nav-menu-list">
         <li class="main-nav-menu-list-item" @click="resetTemplate"  v-if="$route.path === '/' || $route.path === '/lista-fakturek'">
-          <router-link class="main-nav-menu-list-item-link" to="/nowa-fakturka">Nowa fakturka start</router-link>
+          <router-link class="main-nav-menu-list-item-link" to="/nowa-fakturka">Nowa fakturka</router-link>
         </li>
         <li class="main-nav-menu-list-item" @click="loadTemplate" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
           <router-link class="main-nav-menu-list-item-link" to="/nowa-fakturka">Nowa fakturka</router-link>
