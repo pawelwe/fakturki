@@ -6,7 +6,7 @@
       <h1 v-else>Nie masz fakturek!</h1>
     </header>
     <ul class="invoices-thumbs-list" v-if="invoicesList.length">
-      <transition-group appear name="fade" mode="in-out">
+      <transition-group appear name="list" mode="in-out">
       <li class="invoice-thumb" v-for="(invoice, index, key) in invoicesList" key="key">
         <span @click="deleteInvoice(index)" class="invoice-thumb-remove">X</span>
         <section class="invoice-thumb-content" @click="loadInvoice(index + 1)">

@@ -11,10 +11,10 @@
 
 
 .fade-enter-active {
-  transition: all .3s ease-out;
+  transition: all .5s ease-out;
 }
 .fade-leave-active {
-  transition: opacity .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: opacity .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .fade-enter, .slide-fade-leave-active {
   opacity: 0;
@@ -30,5 +30,5 @@
 }
 
 .list-enter, .list-leave-active {
-  transform: translateX(10px);
+  opacity: 0;
 }
