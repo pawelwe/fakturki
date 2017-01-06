@@ -6,7 +6,8 @@
       <h1 v-else>Nie masz fakturek!</h1>
     </header>
     <ul class="invoices-thumbs-list" v-if="invoicesList.length">
-      <li class="invoice-thumb" v-for="(invoice, index, key) in invoicesList">
+      <transition-group appear name="fade" mode="out-in">
+      <li class="invoice-thumb" v-for="(invoice, index, key) in invoicesList" key="key">
         <span @click="deleteInvoice(index)" class="invoice-thumb-remove">X</span>
         <section class="invoice-thumb-content" @click="loadInvoice(index + 1)">
           <h6 class="invoice-thumb-id"><span class="u-violet">{{ index + 1 }})</span>. <span>{{ invoice.creationDate | moment('DD, MM, YYYY, kk:mm') }}</span></h6>
@@ -44,8 +45,8 @@
             <footer class="placeholder"></footer>
           </section>
         </section>
-
       </li>
+      </transition-group>
     </ul>
     <footer class="placeholder"></footer>
   </main>
