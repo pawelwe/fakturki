@@ -140,6 +140,9 @@
         text-align: center;
         font-size: .30rem;
         cursor: default;
+        background: $lightest-gray;
+        border: 1px solid $light-gray;
+        border-left: 0;
       }
 
     }

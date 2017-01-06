@@ -55,10 +55,6 @@
   vertical-align: top;
 }
 
-@include breakpoint($md) {
-
-  .u-left-border-light-gray {
-    border-left: 1px solid $light-gray;
-  }
-
+.u-left-border-light-gray, .u-left-border-light-gray.invoice-thumb-calc-summary-output {
+  border-left: 1px solid $light-gray;
 }
