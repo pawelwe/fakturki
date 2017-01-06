@@ -13,12 +13,12 @@
           <router-link class="main-nav-menu-list-item-link" to="/nowa-fakturka">Nowa fakturka</router-link>
         </li>
         <transition-group appear name="list" mode="out-in">
-        <li class="main-nav-menu-list-item" key="3" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
-          <a href="#" class="main-nav-menu-list-item-link" @click="saveTemplate">Zapisz jako wzór</a>
-        </li>
-        <li class="main-nav-menu-list-item" key="4" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
-          <a href="#" class="main-nav-menu-list-item-link" @click="saveInvoice($route.params.id - 1, $event)">Zapisz</a>
-        </li>
+          <li class="main-nav-menu-list-item" key="3" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
+            <a href="#" class="main-nav-menu-list-item-link" @click="saveTemplate">Zapisz jako wzór</a>
+          </li>
+          <li class="main-nav-menu-list-item" key="4" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
+            <a href="#" class="main-nav-menu-list-item-link" @click="saveInvoice($route.params.id - 1, $event)">Zapisz</a>
+          </li>
         </transition-group>
         <li class="main-nav-menu-list-item" key="5" @click="resetTemplate">
           <router-link class="main-nav-menu-list-item-link" to="/lista-fakturek">Lista</router-link>
