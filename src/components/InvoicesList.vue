@@ -8,7 +8,6 @@
     <ul class="invoices-thumbs-list" v-if="invoicesList.length">
       <li class="invoice-thumb" v-for="(invoice, index, key) in invoicesList">
         <span @click="removeInvoice(index)" class="invoice-thumb-remove">X</span>
-
         <section class="invoice-thumb-content" @click="loadInvoice(index + 1)">
           <h6 class="invoice-thumb-id"><span class="u-violet">{{ index + 1 }})</span>. <span>{{ invoice.creationDate | moment('DD, MM, YYYY, kk:mm') }}</span></h6>
 
@@ -77,8 +76,7 @@
     computed: {
       data () {
         return {
-          id: this.$route.params.id,
-          date: toString(new Date())
+          id: this.$route.params.id
         }
       },
       invoicesList () {

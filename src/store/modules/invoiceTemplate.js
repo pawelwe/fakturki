@@ -23,25 +23,19 @@ const mutations = {
     }
   },
   'SAVE_INVOICE' (state, id) {
-    let savedInvoice = JSON.parse(JSON.stringify(state.activeTemplate))
-    savedInvoice.creationDate = new Date()
-
-    if (id != null) {
-      id = parseInt(id)
-      state.invoicesList[id] = savedInvoice
-    } else {
-      state.invoicesList.push(savedInvoice)
-    }
+    let activeInvoice = JSON.parse(JSON.stringify(state.activeTemplate))
+    activeInvoice.creationDate = new Date()
+    !id && id !== 0 ? state.invoicesList.push(activeInvoice) : state.invoicesList[parseInt(id)] = activeInvoice
   }
 }
 
 // ASYNC
 const actions = {
-  loadInvoice: ({commit, index}) => {
+  loadInvoice: ({commit}) => {
     commit('LOAD_INVOICE')
   },
-  saveInvoice: ({commit}) => {
-    commit('SAVE_INVOICE')
+  saveInvoice: ({commit}, id) => {
+    commit('SAVE_INVOICE', id)
   },
   loadInvoiceTemplate: ({commit}) => {
     commit('LOAD_INVOICE_TEMPLATE')

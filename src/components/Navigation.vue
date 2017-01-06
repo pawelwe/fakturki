@@ -17,7 +17,7 @@
           <a href="#" class="main-nav-menu-list-item-link" @click="saveTemplate">Zapisz jako wzór</a>
         </li>
         <li class="main-nav-menu-list-item" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
-          <a href="#" class="main-nav-menu-list-item-link" @click="saveInvoice($route.params.id, $event)">Zapisz</a>
+          <a href="#" class="main-nav-menu-list-item-link" @click="saveInvoice($route.params.id - 1, $event)">Zapisz</a>
         </li>
         <li class="main-nav-menu-list-item">
           <router-link class="main-nav-menu-list-item-link" to="/lista-fakturek">Lista</router-link>
@@ -77,7 +77,7 @@
           }
         })
       },
-      saveInvoice (number, e) {
+      saveInvoice (invoiceId, e) {
         e.preventDefault()
         var that = this
         vex.dialog.buttons.YES.text = 'Tak'
@@ -87,7 +87,6 @@
           callback: function (value) {
             if (value) {
               console.info('Invoice saved...')
-              let invoiceId = number !== undefined ? number - 1 : null
               that.$store.dispatch('saveInvoice', invoiceId)
             }
           }
