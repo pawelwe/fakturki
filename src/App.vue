@@ -1,8 +1,9 @@
 <template>
   <div id="app" class="container" v-cloak>
     <navigation></navigation>
-    <!--<new-invoice></new-invoice>-->
-    <router-view></router-view>
+    <transition appear name="slide-fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 

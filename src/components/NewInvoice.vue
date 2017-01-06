@@ -18,7 +18,7 @@
         <!-- CALC SECTION -->
         <div class="invoice-calc">
           <invoice-header-row :invoiceTemplate="invoiceTemplate"></invoice-header-row>
-          <transition-group appear name="list" tag="ul" mode="out-in">
+          <transition-group name="list" tag="ul" mode="out-in">
             <invoice-row v-for="(service, index, key) in serviceRows" :service="service" :index="index" :key="service" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
           </transition-group>
           <a href="#" class="invoice-calc-add-row-btn" @click="addInvoiceRow">+</a>
