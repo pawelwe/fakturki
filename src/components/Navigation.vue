@@ -54,7 +54,7 @@
           message: 'Zapisać jako wzór?',
           callback: function (value) {
             if (value) {
-              that.$store.dispatch('saveInvoiceTemplate', that.$store.getters.getActiveTemplate)
+              that.$store.dispatch('saveInvoiceTemplate', that.$store.getters.activeInvoice)
             }
           }
         })

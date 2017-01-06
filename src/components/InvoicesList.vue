@@ -80,7 +80,7 @@
         }
       },
       invoicesList () {
-        return this.$store.getters.getInvoicesList
+        return this.$store.getters.invoicesList
       }
     },
     methods: {

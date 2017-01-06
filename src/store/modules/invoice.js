@@ -2,23 +2,23 @@ import invoiceTemplate from '../../data/invoiceTemplate'
 import invoicesList from '../../data/invoicesList'
 
 const state = {
-  activeTemplate: JSON.parse(JSON.stringify(invoiceTemplate)),
+  activeInvoice: JSON.parse(JSON.stringify(invoiceTemplate)),
   savedTemplate: JSON.parse(JSON.stringify(invoiceTemplate)),
   invoicesList: invoicesList
 }
 
 const mutations = {
   'LOAD_INVOICE_TEMPLATE' (state) {
-    state.activeTemplate = JSON.parse(JSON.stringify(state.savedTemplate))
+    state.activeInvoice = JSON.parse(JSON.stringify(state.savedTemplate))
   },
   'SAVE_INVOICE_TEMPLATE' (state) {
-    state.savedTemplate = JSON.parse(JSON.stringify(state.activeTemplate))
+    state.savedTemplate = JSON.parse(JSON.stringify(state.activeInvoice))
   },
   'LOAD_INVOICE' (state, index) {
-    state.activeTemplate = JSON.parse(JSON.stringify(state.invoicesList[index]))
+    state.activeInvoice = JSON.parse(JSON.stringify(state.invoicesList[index]))
   },
   'SAVE_INVOICE' (state, id) {
-    let activeInvoice = JSON.parse(JSON.stringify(state.activeTemplate))
+    let activeInvoice = JSON.parse(JSON.stringify(state.activeInvoice))
     activeInvoice.creationDate = new Date()
     !id && id !== 0 ? state.invoicesList.push(activeInvoice) : state.invoicesList[parseInt(id)] = activeInvoice
   },
@@ -49,30 +49,30 @@ const actions = {
 }
 
 const getters = {
-  getActiveTemplate: state => {
-    return state.activeTemplate
+  activeInvoice: state => {
+    return state.activeInvoice
   },
   servicesLength: state => {
-    return state.activeTemplate.services.length
+    return state.activeInvoice.services.length
   },
   nettoValue: state => {
     let fullNettoValue = 0
-    for (let i = 0; i < state.activeTemplate.services.length; i++) {
-      fullNettoValue += state.activeTemplate.services[i].priceNetto * state.activeTemplate.services[i].ammount
+    for (let i = 0; i < state.activeInvoice.services.length; i++) {
+      fullNettoValue += state.activeInvoice.services[i].priceNetto * state.activeInvoice.services[i].ammount
     }
     return parseFloat(fullNettoValue).toFixed(2)
   },
   vatValue: state => {
     let fullVatValue = 0
-    for (let i = 0; i < state.activeTemplate.services.length; i++) {
-      fullVatValue += state.activeTemplate.services[i].priceNetto * (0 + '.' + state.activeTemplate.services[i].vat.replace(/%/g, ''))
+    for (let i = 0; i < state.activeInvoice.services.length; i++) {
+      fullVatValue += state.activeInvoice.services[i].priceNetto * (0 + '.' + state.activeInvoice.services[i].vat.replace(/%/g, ''))
     }
     return parseFloat(fullVatValue).toFixed(2)
   },
   bruttoValue: (state, getters) => {
     return (parseFloat(getters.nettoValue) + parseFloat(getters.vatValue)).toFixed(2)
   },
-  getInvoicesList: state => {
+  invoicesList: state => {
     return state.invoicesList
   }
 }
