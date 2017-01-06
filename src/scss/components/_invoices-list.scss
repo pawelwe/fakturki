@@ -60,10 +60,10 @@
 
   &-from {
     width: 100%;
-    min-height: 5rem;
     border-bottom: 1px solid $light-gray;
     padding-bottom: .1rem;
     font-size: .33rem;
+    float: right;
   }
 
   &-to {
@@ -73,7 +73,7 @@
     font-size: .4rem;
     max-width: 33%;
     display: inline-block;
-    float: right;
+    float: left;
   }
 
   &-header {
@@ -228,7 +228,8 @@
     }
 
     .invoice-thumb-from {
-      min-height: initial;
+      //min-height: initial;
+      //min-height: 5rem;
     }
 
     .invoice-thumb-calc-row {

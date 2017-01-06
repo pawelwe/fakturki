@@ -22,12 +22,14 @@
     border-bottom: 1px solid $light-gray;
     padding-bottom: .5rem;
     font-size: 1rem;
+    float: right;
   }
 
   &-to {
     font-family: Museo-500;
     margin-top: 2rem;
     width: 50%;
+    float: left;
   }
 
   &-header {

@@ -7,7 +7,7 @@
     </header>
     <ul class="invoices-thumbs-list" v-if="invoicesList.length">
       <li class="invoice-thumb" v-for="(invoice, index, key) in invoicesList">
-        <span @click="removeInvoice(index)" class="invoice-thumb-remove">X</span>
+        <span @click="deleteInvoice(index)" class="invoice-thumb-remove">X</span>
         <section class="invoice-thumb-content" @click="loadInvoice(index + 1)">
           <h6 class="invoice-thumb-id"><span class="u-violet">{{ index + 1 }})</span>. <span>{{ invoice.creationDate | moment('DD, MM, YYYY, kk:mm') }}</span></h6>
 
@@ -85,15 +85,15 @@
     },
     methods: {
       ...mapActions([
-        'loadInvoice'
+        'loadInvoice',
+        'deleteInvoice'
       ]),
       loadInvoice (index) {
-        this.$store.commit('LOAD_INVOICE', index - 1)
+        this.$store.dispatch('loadInvoice', index - 1)
         this.$router.push('fakturka-' + index)
       },
-      removeInvoice (index) {
-        console.info(index)
-        this.$store.commit('DEL_INVOICE', index)
+      deleteInvoice (index) {
+        this.$store.dispatch('deleteInvoice', index)
       }
     }
   }

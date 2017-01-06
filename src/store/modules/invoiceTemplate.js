@@ -17,36 +17,34 @@ const mutations = {
   'LOAD_INVOICE' (state, index) {
     state.activeTemplate = JSON.parse(JSON.stringify(state.invoicesList[index]))
   },
-  'DEL_INVOICE' (state, id) {
-    if (id != null) {
-      state.invoicesList.splice(id, 1)
-    }
-  },
   'SAVE_INVOICE' (state, id) {
     let activeInvoice = JSON.parse(JSON.stringify(state.activeTemplate))
     activeInvoice.creationDate = new Date()
     !id && id !== 0 ? state.invoicesList.push(activeInvoice) : state.invoicesList[parseInt(id)] = activeInvoice
+  },
+  'DELETE_INVOICE' (state, id) {
+    if (id != null) {
+      state.invoicesList.splice(id, 1)
+    }
   }
 }
 
 // ASYNC
 const actions = {
-  loadInvoice: ({commit}) => {
-    commit('LOAD_INVOICE')
-  },
-  saveInvoice: ({commit}, id) => {
-    commit('SAVE_INVOICE', id)
-  },
   loadInvoiceTemplate: ({commit}) => {
     commit('LOAD_INVOICE_TEMPLATE')
   },
   saveInvoiceTemplate: ({commit}) => {
     commit('SAVE_INVOICE_TEMPLATE')
   },
-  asyncLoadTemplate: ({commit}) => {
-    setTimeout(() => {
-      commit('LOAD_INVOICE_TEMPLATE', invoiceTemplate)
-    }, 1000)
+  loadInvoice: ({commit}, id) => {
+    commit('LOAD_INVOICE', id)
+  },
+  saveInvoice: ({commit}, id) => {
+    commit('SAVE_INVOICE', id)
+  },
+  deleteInvoice: ({commit}, id) => {
+    commit('DELETE_INVOICE', id)
   }
 }
 

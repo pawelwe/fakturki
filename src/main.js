@@ -12,11 +12,6 @@ import VueMoment from 'vue-moment'
 Vue.use(VueRouter)
 Vue.use(VueMoment)
 
-Vue.filter('reverse', function (value) {
-  // slice to make a copy of array, then reverse the copy
-  return value.slice().reverse()
-})
-
 const router = new VueRouter({
   routes,
   mode: 'history'
