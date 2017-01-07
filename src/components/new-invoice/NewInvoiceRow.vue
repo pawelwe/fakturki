@@ -2,11 +2,23 @@
   <!--<transition name="slide-fade" appear mode="out-in">-->
     <li class="invoice-calc-row">
       <span class="invoice-calc-output invoice-calc-number">{{ index + 1 }}</span>
-      <textarea rows="1" class="invoice-calc-input invoice-calc-name" v-model="service.name" :placeholder="service.name"></textarea>
-      <textarea rows="1" class="invoice-calc-input invoice-calc-count"  v-model="service.ammount" :placeholder="service.ammount"></textarea>
-      <textarea rows="1" class="invoice-calc-input invoice-calc-price-netto"  v-model="service.priceNetto" :placeholder="service.priceNetto"></textarea>
+      <span class="invoice-calc-input-wrap invoice-calc-name">
+        <span class="invoice-calc-input-wrap-label">Nazwa: </span>
+        <textarea rows="1" cols="1"  class="invoice-calc-input " v-model="service.name" :placeholder="service.name"></textarea>
+      </span>
+      <span class="invoice-calc-input-wrap invoice-calc-count">
+        <span class="invoice-calc-input-wrap-label">Ilość: </span>
+        <textarea rows="1" cols="1" class="invoice-calc-input" v-model="service.ammount" :placeholder="service.ammount"></textarea>
+      </span>
+      <span class="invoice-calc-input-wrap invoice-calc-price-netto">
+        <span class="invoice-calc-input-wrap-label">Cena Netto: </span>
+        <textarea rows="1" cols="1" class="invoice-calc-input"  v-model="service.priceNetto" :placeholder="service.priceNetto"></textarea>
+      </span>
       <span class="invoice-calc-output invoice-calc-value-netto">{{ nettoValue }}</span>
-      <textarea rows="1" class="invoice-calc-input invoice-calc-vat"  v-model="service.vat" :placeholder="service.vat"></textarea>
+      <span class="invoice-calc-input-wrap invoice-calc-vat">
+        <span class="invoice-calc-input-wrap-label">VAT: </span>
+        <textarea rows="1" cols="1" class="invoice-calc-input "  v-model="service.vat" :placeholder="service.vat"></textarea>
+      </span>
       <span class="invoice-calc-output invoice-calc-vat-value">{{ vatValue }}</span>
       <span class="invoice-calc-output invoice-calc-full-value">{{ bruttoValue }}</span>
       <span class="invoice-calc-remove-row-btn" @click="$emit('removeRow')">x</span>
