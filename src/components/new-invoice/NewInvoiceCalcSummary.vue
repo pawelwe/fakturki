@@ -3,7 +3,7 @@
     <li class="u-hidden invoice-calc-number"></li>
     <li class="u-hidden invoice-calc-name"></li>
     <li class="u-hidden invoice-calc-count"></li>
-    <li class="invoice-calc-summary-output invoice-calc-price-netto u-bold u-left-border-light-gray">RAZEM</li>
+    <li class="invoice-calc-summary-output invoice-calc-price-netto u-bold u-left-border-light-gray u-no-left-border-mobile">RAZEM</li>
     <li class="invoice-calc-summary-output invoice-calc-value-netto">{{ nettoValue }}</li>
     <li class="invoice-calc-summary-output invoice-calc-vat">{{ invoiceTemplate.labels.vatRateValue }}</li>
     <li class="invoice-calc-summary-output invoice-calc-vat-value">{{ vatValue }}</li>

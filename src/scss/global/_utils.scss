@@ -58,3 +58,15 @@
 .u-left-border-light-gray, .u-left-border-light-gray.invoice-thumb-calc-summary-output {
   border-left: 1px solid $light-gray;
 }
+
+.u-no-left-border-mobile {
+  border-left: 0;
+}
+
+@include breakpoint($md) {
+
+  .u-no-left-border-mobile {
+    border-left: 1px solid $light-gray;
+  }
+
+}
