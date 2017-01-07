@@ -3,12 +3,11 @@
 .invoices-thumbs {
   @include column(1);
   margin: 2rem 0;
+
   &-list {
     margin-top: 2rem;
   }
-
 }
-
 
 .invoice-thumb {
   position: relative;
@@ -92,7 +91,6 @@
     &-label {
       min-width: 5rem;
       font-weight: bold;
-
     }
 
     &-date {
@@ -130,7 +128,6 @@
         border-bottom: 0;
       }
     }
-
 
     &-summary {
       margin-top: .65rem;
@@ -218,7 +215,6 @@
       display: block;
       margin-top: .2rem;
     }
-
   }
 
   @include breakpoint($md) {

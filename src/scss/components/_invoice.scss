@@ -53,7 +53,6 @@
     &-date {
       width: 100%;
     }
-
   }
 
   &-calc {
@@ -74,7 +73,6 @@
           font-family: Museo-500;
           background: $lightest-gray;
         }
-
       }
 
       &__summary {
@@ -89,7 +87,6 @@
       transform: translateY(140%);
       font-family: Museo-500;
       cursor: pointer;
-
       padding: 0 0.3rem;
       border-radius: 50%;
       transition: all 150ms ease-in;
@@ -103,7 +100,6 @@
         background: $violet;
         border: 1px solid $violet;
       }
-
     }
 
     &-remove-row-btn {
@@ -124,7 +120,6 @@
         color: $white;
         background: $violet;
       }
-
     }
 
     &-summary {
@@ -136,7 +131,6 @@
         font-size: 1rem;
         cursor: default;
       }
-
     }
 
     &-input, &-output {
@@ -173,6 +167,7 @@
     &-name {
       flex: 8;
     }
+
     &-count {
       flex: 2;
     }
@@ -196,7 +191,6 @@
     &-full-value {
       flex: 4;
     }
-
   }
 
   &-summary {
@@ -206,7 +200,6 @@
     &-row {
       width: 100%;
     }
-
   }
 
   @include breakpoint($md) {
@@ -234,7 +227,5 @@
       border-bottom: 1px solid $light-gray;
       border-right: 1px solid $light-gray;
     }
-
   }
-
 }
