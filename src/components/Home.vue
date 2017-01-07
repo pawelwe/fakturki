@@ -5,7 +5,6 @@
       <!-- FOOTER PLACEHOLDER (FLEX) -->
       <footer class="placeholder"></footer>
     </main>
-  </transition>
 </template>
 
 <script>
