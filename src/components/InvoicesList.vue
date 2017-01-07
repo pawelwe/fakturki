@@ -9,7 +9,7 @@
       <transition-group appear name="list" mode="out-in">
         <li class="invoice-thumb" v-for="(invoice, index, key) in invoicesList" :key="invoice">
           <span @click="deleteInvoice(index)" class="invoice-thumb-remove">X</span>
-          <section class="invoice-thumb-content" @click="loadInvoice(index + 1)">
+          <form class="invoice-thumb-content" @click="loadInvoice(index + 1)">
             <h6 class="invoice-thumb-id"><span class="u-violet">{{ index + 1 }})</span>. <span>{{ invoice.creationDate | moment('DD, MM, YYYY, kk:mm') }}</span></h6>
 
             <!-- COMPANY DATA SECTION -->
@@ -41,10 +41,10 @@
               <!-- MAIN SUMMARY SECTION -->
               <main-summary :invoiceTemplate="invoice"></main-summary>
 
-              <!-- FOOTER PLACEHOLDER (FLEX) -->
-              <footer class="placeholder"></footer>
             </section>
-          </section>
+            <!-- FOOTER PLACEHOLDER (FLEX) -->
+            <footer class="placeholder"></footer>
+          </form>
         </li>
       </transition-group>
     </ul>

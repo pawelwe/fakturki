@@ -55,7 +55,7 @@
   &-data {
     width: 100%;
     align-self: center;
-    padding: 0 0 8rem;
+    padding: 0 0 5rem;
   }
 
   &-from {
@@ -228,11 +228,6 @@
 
     .invoice-thumb {
       @include column(1/3, $cycle: 3);
-    }
-
-    .invoice-thumb-from {
-      //min-height: initial;
-      //min-height: 5rem;
     }
 
     .invoice-thumb-calc-row {

@@ -1,5 +1,5 @@
 <template>
-    <main class="invoice">
+    <form class="invoice">
       <!-- COMPANY DATA SECTION -->
       <header>
         <invoice-from :invoiceTemplate="invoiceTemplate"></invoice-from>
@@ -16,13 +16,13 @@
         <invoice-date :invoiceTemplate="invoiceTemplate"></invoice-date>
 
         <!-- CALC SECTION -->
-        <div class="invoice-calc">
+        <section class="invoice-calc">
           <invoice-header-row :invoiceTemplate="invoiceTemplate"></invoice-header-row>
           <transition-group name="list" tag="ul" mode="out-in">
             <invoice-row v-for="(service, index, key) in serviceRows" :service="service" :index="index" :key="service" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
           </transition-group>
           <a href="#" class="invoice-calc-add-row-btn" @click="addInvoiceRow">+</a>
-        </div>
+        </section>
 
         <!-- CALC SUMMARY SECTION -->
         <calc-summary :invoiceTemplate="invoiceTemplate"></calc-summary>
@@ -34,7 +34,7 @@
 
       <!-- FOOTER PLACEHOLDER (FLEX) -->
       <footer class="placeholder"></footer>
-    </main>
+    </form>
 </template>
 
 <script>
