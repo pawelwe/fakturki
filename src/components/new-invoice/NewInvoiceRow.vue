@@ -47,7 +47,7 @@
       },
       checkNetto (e) {
         const charCode = e.keyCode
-        if (charCode !== 8 && charCode < 48 || charCode > 57) {
+        if (charCode !== 8 && charCode !== 190 && (charCode < 48 || charCode > 57)) {
           this.service.priceNetto = 123.00
         }
       },
