@@ -65,7 +65,7 @@ const getters = {
   vatValue: state => {
     let fullVatValue = 0
     for (let i = 0; i < state.activeInvoice.services.length; i++) {
-      fullVatValue += state.activeInvoice.services[i].priceNetto * (0 + '.' + state.activeInvoice.services[i].vat.replace(/%/g, ''))
+      fullVatValue += (state.activeInvoice.services[i].priceNetto / 100) * state.activeInvoice.services[i].vat.replace(/%/g, '')
     }
     return parseFloat(fullVatValue).toFixed(2)
   },
