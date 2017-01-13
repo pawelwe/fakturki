@@ -19,8 +19,14 @@ const mutations = {
   },
   'SAVE_INVOICE' (state, id) {
     let activeInvoice = JSON.parse(JSON.stringify(state.activeInvoice))
-    activeInvoice.creationDate = new Date()
-    !id && id !== 0 ? state.invoicesList.push(activeInvoice) : state.invoicesList[parseInt(id)] = activeInvoice
+    if (!id && id !== 0) {
+      activeInvoice.creationDate = new Date()
+      activeInvoice.id = parseInt(state.invoicesList.length + 1)
+      state.invoicesList.push(activeInvoice)
+    } else {
+      activeInvoice.modyficationDate = new Date()
+      state.invoicesList[parseInt(id)] = activeInvoice
+    }
   },
   'DELETE_INVOICE' (state, id) {
     if (id != null) {
