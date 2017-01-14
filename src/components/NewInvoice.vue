@@ -20,7 +20,7 @@
           <invoice-header-row :invoiceTemplate="invoiceTemplate"></invoice-header-row>
           <!--{{ serviceRows }}-->
           <transition-group name="list" tag="ul" mode="out-in">
-            <invoice-row v-for="(service, index) in serviceRows" :service="service" :key="index" :index="index" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
+            <invoice-row v-for="(service, index) in serviceRows" :service="service" :key="service.id" :index="index" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
           </transition-group>
           <a href="#" class="invoice-calc-add-row-btn" @click="addInvoiceRow">+</a>
         </section>
