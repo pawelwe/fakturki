@@ -9,7 +9,7 @@
       <transition-group appear name="list" mode="out-in">
         <li class="invoice-thumb" v-for="(invoice, index) in invoicesList" :key="index">
           <span @click="deleteInvoice(index)" class="invoice-thumb-remove">X</span>
-          <form class="invoice-thumb-content" @click="loadInvoice(index + 1)">
+          <form class="invoice-thumb-content" @click="loadInvoice(index)">
             <h6 class="invoice-thumb-id"><span class="u-violet">{{ index + 1 }})</span>. <span>{{ invoice.creationDate | moment('DD, MM, YYYY, kk:mm') }}</span></h6>
 
             <!-- COMPANY DATA SECTION -->
@@ -90,8 +90,8 @@
         'deleteInvoice'
       ]),
       loadInvoice (index) {
-        this.$store.dispatch('loadInvoice', index - 1)
-        this.$router.push('fakturka-' + index)
+        this.$store.dispatch('loadInvoice', index)
+        this.$router.push('fakturka-' + parseInt(index + 1))
       },
       deleteInvoice (index) {
         this.$store.dispatch('deleteInvoice', index)
