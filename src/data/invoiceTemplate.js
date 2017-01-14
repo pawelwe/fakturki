@@ -17,6 +17,7 @@ export default {
   },
   services: [
     {
+      id: 1,
       name: 'Usługi grabarskie',
       ammount: '1',
       priceNetto: '123.00',
