@@ -73,7 +73,7 @@
         this.serviceRows.push({
           id: this.$store.getters.servicesLength + 1,
           name: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].name,
-          ammount: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].ammount,
+          amount: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].amount,
           priceNetto: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].priceNetto,
           vat: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].vat
         })

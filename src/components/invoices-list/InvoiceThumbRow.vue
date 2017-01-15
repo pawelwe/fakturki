@@ -2,7 +2,7 @@
   <li class="invoice-thumb-calc-row">
     <span class="invoice-thumb-calc-output invoice-thumb-calc-number">{{ index + 1 }}</span>
     <span class="invoice-thumb-calc-input invoice-thumb-calc-name">{{ service.name }}</span>
-    <span class="invoice-thumb-calc-input invoice-thumb-calc-count">{{ service.ammount }}</span>
+    <span class="invoice-thumb-calc-input invoice-thumb-calc-count">{{ service.amount }}</span>
     <span class="invoice-thumb-calc-input invoice-thumb-calc-price-netto">{{ service.priceNetto }}</span>
     <span class="invoice-thumb-calc-output invoice-thumb-calc-value-netto">{{ nettoValue }}</span>
     <span class="invoice-thumb-calc-input invoice-thumb-calc-vat">{{ service.vat }}</span>

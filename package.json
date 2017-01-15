@@ -75,6 +75,7 @@
     "vue-moment": "^2.0.2",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.0",
+    "vuelidate": "^0.2.0",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2",

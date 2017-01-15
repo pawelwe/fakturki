@@ -7,7 +7,7 @@ export default {
   labels: {
     nrLabel: 'Nr.',
     serviceNameLabel: 'Nazwa usługi',
-    ammountLabel: 'Ilość',
+    amountLabel: 'Ilość',
     priceNettoLabel: 'Cena netto',
     valueNettoLabel: 'Wartość',
     valRateLabel: 'VAT',
@@ -19,7 +19,7 @@ export default {
     {
       id: 1,
       name: 'Usługi grabarskie',
-      ammount: '1',
+      amount: '1',
       priceNetto: '123.00',
       vat: '23%'
     }

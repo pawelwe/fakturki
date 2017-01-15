@@ -64,16 +64,16 @@ const getters = {
   nettoValue: state => {
     let fullNettoValue = 0
     for (let i = 0; i < state.activeInvoice.services.length; i++) {
-      fullNettoValue += state.activeInvoice.services[i].priceNetto * state.activeInvoice.services[i].ammount
+      fullNettoValue += state.activeInvoice.services[i].priceNetto * state.activeInvoice.services[i].amount
     }
-    return parseFloat(fullNettoValue).toFixed(2)
+    return !isNaN(fullNettoValue) ? parseFloat(fullNettoValue).toFixed(2) : 0
   },
   vatValue: state => {
     let fullVatValue = 0
     for (let i = 0; i < state.activeInvoice.services.length; i++) {
       fullVatValue += (state.activeInvoice.services[i].priceNetto / 100) * state.activeInvoice.services[i].vat.replace(/%/g, '')
     }
-    return parseFloat(fullVatValue).toFixed(2)
+    return !isNaN(fullVatValue) ? parseFloat(fullVatValue).toFixed(2) : 0
   },
   bruttoValue: (state, getters) => {
     return (parseFloat(getters.nettoValue) + parseFloat(getters.vatValue)).toFixed(2)

@@ -6,11 +6,13 @@ import store from './store/store'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
 import VueMoment from 'vue-moment'
+import Vuelidate from 'vuelidate'
 
 /* eslint-disable no-new */
 
 Vue.use(VueRouter)
 Vue.use(VueMoment)
+Vue.use(Vuelidate)
 
 const router = new VueRouter({
   routes,

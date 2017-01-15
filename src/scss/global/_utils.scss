@@ -63,6 +63,17 @@
   border-left: 0;
 }
 
+.u-error {
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid red !important;
+  }
+}
+
 @include breakpoint($md) {
 
   .u-no-left-border-mobile {
