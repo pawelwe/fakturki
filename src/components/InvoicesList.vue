@@ -7,7 +7,7 @@
     </header>
     <ul class="invoices-thumbs-list" v-if="invoicesList.length">
       <transition-group appear name="list" mode="out-in">
-        <li class="invoice-thumb" v-for="(invoice, index) in invoicesList" :key="index">
+        <li class="invoice-thumb" v-for="(invoice, index) in invoicesList" :key="invoice.id">
           <span @click="deleteInvoice(index)" class="invoice-thumb-remove">X</span>
           <form class="invoice-thumb-content" @click="loadInvoice(index)">
             <h6 class="invoice-thumb-id"><span class="u-violet">{{ index + 1 }})</span>. <span>{{ invoice.creationDate | moment('DD, MM, YYYY, kk:mm') }}</span></h6>
