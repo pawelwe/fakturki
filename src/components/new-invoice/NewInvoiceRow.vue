@@ -7,7 +7,7 @@
     </span>
     <span class="invoice-calc-input-wrap invoice-calc-count" :class="{ 'u-error': $v.service.amount.$invalid }">
       <span class="invoice-calc-input-wrap-label">Ilość: </span>
-      <textarea rows="1" cols="1" lazy class="invoice-calc-input" v-model="service.amount" :placeholder="service.amount"></textarea>
+      <textarea rows="1" cols="1" lazy class="invoice-calc-input" v-model.number="service.amount" :placeholder="service.amount"></textarea>
     </span>
     <span class="invoice-calc-input-wrap invoice-calc-price-netto" :class="{ 'u-error': $v.service.priceNetto.$invalid }" >
       <span class="invoice-calc-input-wrap-label">Cena Netto: </span>
@@ -16,7 +16,7 @@
     <span class="invoice-calc-output invoice-calc-value-netto">{{ nettoValue }}</span>
     <span class="invoice-calc-input-wrap invoice-calc-vat" :class="{ 'u-error': $v.service.vat.$invalid }">
       <span class="invoice-calc-input-wrap-label">VAT: </span>
-      <textarea rows="1" cols="1" class="invoice-calc-input" lazy v-model="service.vat" :placeholder="service.vat"></textarea>
+      <textarea rows="1" cols="1" class="invoice-calc-input" v-model="service.vat" :placeholder="service.vat"></textarea>
     </span>
     <span class="invoice-calc-output invoice-calc-vat-value">{{ vatValue }}</span>
     <span class="invoice-calc-output invoice-calc-full-value">{{ bruttoValue }}</span>
@@ -26,6 +26,7 @@
 
 <script>
   import { required, minLength, between } from 'vuelidate/lib/validators'
+  import numberWithPercent from '../../helpers/numberWithPercent'
 
   export default {
     props: ['service', 'index'],
@@ -58,7 +59,7 @@
         },
         vat: {
           required,
-          minLength: minLength(1, 100)
+          numberWithPercent: numberWithPercent
         }
       }
     }
