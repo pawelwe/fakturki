@@ -3,7 +3,7 @@
     <!-- COMPANY DATA SECTION -->
     <header>
       <h1 v-if="invoicesList.length">Lista fakturek:</h1>
-      <h1 v-else>Nie masz fakturek!</h1>
+      <h1 v-else>Nie masz jeszcze fakturek!</h1>
     </header>
     <ul class="invoices-thumbs-list" v-if="invoicesList.length">
       <transition-group appear name="list" mode="out-in">

@@ -18,10 +18,10 @@ export default {
   services: [
     {
       id: 1,
-      name: 'Usługi grabarskie',
-      amount: '1',
-      priceNetto: '123.00',
-      vat: '23%'
+      name: '',
+      amount: '',
+      priceNetto: '',
+      vat: ''
     }
   ],
   valueInWords: 'Słownie: sto złoty osiem groszy',
