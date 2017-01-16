@@ -52,6 +52,7 @@
 
     &-date {
       width: 100%;
+      min-height: 5rem;
     }
   }
 
@@ -63,7 +64,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      border-bottom: 1px solid $light-gray;
+      border-bottom: 1px dashed $violet;
+      padding: 2rem 0;
       position: relative;
 
       &__header {
@@ -146,6 +148,7 @@
       text-align: left;
       width: 100%;
       padding-left: .5rem;
+      background: $lightest-gray;
 
       &:focus {
         overflow: hidden;
@@ -157,23 +160,29 @@
       &-wrap {
         position: relative;
         width: 100%;
-        display: flex;
+        display: block;
         align-items: center;
         position: relative;
 
         &-label {
+          margin-top: 1rem;
+          display: block;
           font-size: 1rem;
           vertical-align: middle;
-          color: $medium-gray;
+          color: $dark-gray;
           white-space: nowrap;
         }
       }
     }
 
     &-output {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
       font-size: .9rem;
       color: $medium-gray;
       cursor: default;
+      padding: 1rem 0 0;
     }
 
     &-label {
@@ -213,6 +222,7 @@
 
     &-row {
       width: 100%;
+      text-align: center;
     }
   }
 
@@ -226,12 +236,29 @@
       min-height: initial;
     }
 
+    .invoice-date-date {
+      min-height: initial;
+    }
+
     .invoice-calc {
+
       &-input {
         width: 100%;
         text-align: center;
         padding-left: 0;
+        background: transparent;
 
+        &:focus {
+          background: $light-gray;
+        }
+
+        &-wrap {
+          display: flex;
+        }
+      }
+
+      &-output {
+        padding: 0;
       }
 
       &-remove-row-btn {
@@ -291,20 +318,33 @@
       }
     }
 
+    .invoice-summary-row {
+      text-align: left;
+    }
+
     .invoice-calc-row {
       flex-direction: row;
       align-items: center;
+      border-bottom: 1px solid $light-gray;
+      padding: 0;
 
       &__header {
         display: flex;
       }
+
+      &__summary {
+        border-bottom: 0;
+      }
+
     }
 
-    .invoice-calc-summary-output {
-      background: $lightest-gray;
-      border-top: 1px solid $light-gray;
-      border-bottom: 1px solid $light-gray;
-      border-right: 1px solid $light-gray;
+    .invoice-calc-summary {
+      &-output {
+        background: $lightest-gray;
+        border-top: 1px solid $light-gray;
+        border-bottom: 1px solid $light-gray;
+        border-right: 1px solid $light-gray;
+      }
     }
   }
 }
