@@ -91,7 +91,7 @@
       ]),
       loadInvoice (index) {
         this.$store.dispatch('loadInvoice', index)
-        this.$router.push('fakturka-' + parseInt(index + 1))
+        this.$router.push(`fakturka-${parseInt(index + 1)}`)
       },
       deleteInvoice (index) {
         this.$store.dispatch('deleteInvoice', index)
