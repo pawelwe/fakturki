@@ -1,13 +1,13 @@
 .start-page {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
   padding: 1rem 3rem;
   text-align: center;
+  justify-content: center;
 
   @include breakpoint($md) {
 
-    @include column(3/4, $cycle: 2);
+    //@include column(3/4, $cycle: 2);
     min-height: 780px;
     box-shadow: 5px 5px 5px rgba(0,0,0, .05);
     background: $white;
