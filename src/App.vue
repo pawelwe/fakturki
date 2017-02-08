@@ -22,7 +22,7 @@
     },
     methods: {
       fetchInvoicesList () {
-        this.$http.get('')
+        this.$http.get('invoices-list.json')
           .then(response => {
             return response.json()
           })

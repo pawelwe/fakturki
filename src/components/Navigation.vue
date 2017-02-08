@@ -90,7 +90,7 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoice', invoiceId)
-              that.$http.post('', that.$store.getters.invoicesList)
+              that.$http.post('invoices-list.json', that.$store.getters.invoicesList)
                 .then(response => {
                   console.log(response)
                 }, error => {

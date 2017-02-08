@@ -16,6 +16,8 @@ Vue.use(VueMoment)
 Vue.use(Vuelidate)
 Vue.use(VueResource)
 
+Vue.http.options.root = 'https://fakturki-1cbae.firebaseio.com/'
+
 const router = new VueRouter({
   routes,
   mode: 'history'
