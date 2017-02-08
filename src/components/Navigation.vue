@@ -57,6 +57,7 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoiceTemplate', that.$store.getters.activeInvoice)
+              that.$http.post('https://fakturki-1cbae.firebaseio.com/invoice-template.json', that.$store.getters.activeInvoice)
             }
           }
         })
@@ -89,6 +90,12 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoice', invoiceId)
+              that.$http.post('', that.$store.getters.invoicesList)
+                .then(response => {
+                  console.log(response)
+                }, error => {
+                  console.log(error)
+                })
             }
           }
         })

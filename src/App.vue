@@ -16,6 +16,18 @@
     components: {
       navigation,
       newInvoice
+    },
+    created: function () {
+      this.fetchInvoicesList()
+    },
+    methods: {
+      fetchInvoicesList () {
+        this.$http.get('')
+          .then(response => {
+            return response.json()
+          })
+          .then(data => console.log(data))
+      }
     }
   }
 </script>

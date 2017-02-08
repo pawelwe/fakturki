@@ -7,12 +7,14 @@ import VueRouter from 'vue-router'
 import { routes } from './routes'
 import VueMoment from 'vue-moment'
 import Vuelidate from 'vuelidate'
+import VueResource from 'vue-resource'
 
 /* eslint-disable no-new */
 
 Vue.use(VueRouter)
 Vue.use(VueMoment)
 Vue.use(Vuelidate)
+Vue.use(VueResource)
 
 const router = new VueRouter({
   routes,
