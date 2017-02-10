@@ -1,15 +1,17 @@
-import invoiceTemplate from '../../data/invoiceTemplate'
-import invoicesList from '../../data/invoicesList'
-
 const state = {
-  activeInvoice: JSON.parse(JSON.stringify(invoiceTemplate)),
-  savedTemplate: JSON.parse(JSON.stringify(invoiceTemplate)),
-  invoicesList: invoicesList
+  activeInvoice: null,
+  savedTemplate: null,
+  invoicesList: [],
+  fireBaseUrl: '',
+  fireBaseVerified: false
 }
 
 const mutations = {
-  'LOAD_INVOICE_TEMPLATE' (state) {
-    state.activeInvoice = JSON.parse(JSON.stringify(state.savedTemplate))
+  'SET_INVOICES_LIST' (state, fetchedInvoicesList) {
+    state.invoicesList = fetchedInvoicesList
+  },
+  'SET_INVOICE_TEMPLATE' (state, fetchedInvoiceTemplate) {
+    state.activeInvoice = fetchedInvoiceTemplate
   },
   'SAVE_INVOICE_TEMPLATE' (state) {
     state.savedTemplate = JSON.parse(JSON.stringify(state.activeInvoice))
@@ -32,13 +34,35 @@ const mutations = {
     if (id != null) {
       state.invoicesList.splice(id, 1)
     }
+  },
+  'ADD_INVOICE_ROW' (state, {id, name, ammount, priceNetto, vat}) {
+    state.activeInvoice.services.push({
+      id,
+      name,
+      ammount,
+      priceNetto,
+      vat
+    }
+    )
+  },
+  'REMOVE_INVOICE_ROW' (state, index) {
+    state.activeInvoice.services.splice(index, 1)
+  },
+  'CHECK_FIRABASE_CONNECTION' (state, check) {
+    state.fireBaseVerified = check
+  },
+  'SET_FIRABASE_URL' (state, url) {
+    state.fireBaseUrl = url
   }
 }
 
 // ASYNC
 const actions = {
-  loadInvoiceTemplate: ({commit}) => {
-    commit('LOAD_INVOICE_TEMPLATE')
+  setInvoicesList: ({commit}, fetchedInvoicesList) => {
+    commit('SET_INVOICES_LIST', fetchedInvoicesList)
+  },
+  setInvoiceTemplate: ({commit}, fetchedInvoiceTemplate) => {
+    commit('SET_INVOICE_TEMPLATE', fetchedInvoiceTemplate)
   },
   saveInvoiceTemplate: ({commit}) => {
     commit('SAVE_INVOICE_TEMPLATE')
@@ -51,6 +75,18 @@ const actions = {
   },
   deleteInvoice: ({commit}, id) => {
     commit('DELETE_INVOICE', id)
+  },
+  addInvoiceRow: ({commit}, row) => {
+    commit('ADD_INVOICE_ROW', row)
+  },
+  removeInvoiceRow: ({commit}, row) => {
+    commit('REMOVE_INVOICE_ROW', row)
+  },
+  checkFirebaseConnection: ({commit}, check) => {
+    commit('CHECK_FIRABASE_CONNECTION', check)
+  },
+  setFirebaseUrl: ({commit}, url) => {
+    commit('SET_FIRABASE_URL', url)
   }
 }
 
@@ -63,23 +99,39 @@ const getters = {
   },
   nettoValue: state => {
     let fullNettoValue = 0
-    for (let i = 0; i < state.activeInvoice.services.length; i++) {
-      fullNettoValue += state.activeInvoice.services[i].priceNetto * state.activeInvoice.services[i].amount
+    let services = state.invoicesList.services
+    if (services !== undefined && services && services.length > 0) {
+      for (let i = 0; i < services.length; i++) {
+        fullNettoValue += services[i].priceNetto * services[i].amount
+      }
+      return !isNaN(fullNettoValue) ? parseFloat(fullNettoValue).toFixed(2) : 0
+    } else {
+      return 0
     }
-    return !isNaN(fullNettoValue) ? parseFloat(fullNettoValue).toFixed(2) : 0
   },
   vatValue: state => {
     let fullVatValue = 0
-    for (let i = 0; i < state.activeInvoice.services.length; i++) {
-      fullVatValue += (state.activeInvoice.services[i].priceNetto / 100) * state.activeInvoice.services[i].vat.replace(/%/g, '')
+    let services = state.invoicesList.services
+    if (services !== undefined && services && services.length > 0) {
+      for (let i = 0; i < services.length; i++) {
+        fullVatValue += (services[i].priceNetto / 100) * services[i].vat.replace(/%/g, '')
+      }
+      return !isNaN(fullVatValue) ? parseFloat(fullVatValue).toFixed(2) : 0
+    } else {
+      return 0
     }
-    return !isNaN(fullVatValue) ? parseFloat(fullVatValue).toFixed(2) : 0
   },
   bruttoValue: (state, getters) => {
     return (parseFloat(getters.nettoValue) + parseFloat(getters.vatValue)).toFixed(2)
   },
   invoicesList: state => {
     return state.invoicesList
+  },
+  fireBaseVerified: state => {
+    return state.fireBaseVerified
+  },
+  fireBaseUrl: state => {
+    return state.fireBaseUrl
   }
 }
 

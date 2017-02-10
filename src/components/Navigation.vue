@@ -6,7 +6,7 @@
     <h1 class="main-nav-header">{{ appName }}</h1>
     <nav class="main-nav-menu">
       <ul class="main-nav-menu-list">
-        <li class="main-nav-menu-list-item" @click="resetTemplate" key="1"  v-if="$route.path === '/' || $route.path === '/lista-fakturek'">
+        <li class="main-nav-menu-list-item" @click="resetTemplate"  key="1"  v-if="$route.path === '/' || $route.path === '/lista-fakturek'">
           <router-link class="main-nav-menu-list-item-link" to="/nowa-fakturka">Nowa fakturka</router-link>
         </li>
         <li class="main-nav-menu-list-item" @click="loadTemplate" key="2" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
@@ -46,6 +46,14 @@
         id: this.$route.params.id
       }
     },
+    props: [
+      'fetchInvoiceTemplate'
+    ],
+    computed: {
+      firebaseUrl () {
+        return this.$store.getters.fireBaseUrl
+      }
+    },
     methods: {
       saveTemplate (e) {
         e.preventDefault()
@@ -57,7 +65,7 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoiceTemplate', that.$store.getters.activeInvoice)
-              that.$http.post('https://fakturki-1cbae.firebaseio.com/invoice-template.json', that.$store.getters.activeInvoice)
+              that.$http.put(this.firebaseUrl + 'invoice-template.json', that.$store.getters.activeInvoice)
             }
           }
         })
@@ -71,14 +79,14 @@
           message: 'Nowa Fakturka?',
           callback: function (value) {
             if (value) {
-              that.$store.dispatch('loadInvoiceTemplate')
+              that.$emit('resetTemplate')
             }
           }
         })
       },
       resetTemplate (e) {
         e.preventDefault()
-        this.$store.dispatch('loadInvoiceTemplate')
+        this.$emit('resetTemplate')
       },
       saveInvoice (invoiceId, e) {
         e.preventDefault()
@@ -90,7 +98,7 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoice', invoiceId)
-              that.$http.post('invoices-list.json', that.$store.getters.invoicesList)
+              that.$http.put(this.firebaseUrl + 'invoices-list.json', that.$store.getters.invoicesList)
                 .then(response => {
                   console.log(response)
                 }, error => {

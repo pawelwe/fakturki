@@ -1,6 +1,5 @@
 <template>
-    <form class="invoice">
-      <!-- COMPANY DATA SECTION -->
+    <form class="invoice" v-if="invoiceTemplate">
       <header>
         <invoice-from :invoiceTemplate="invoiceTemplate"></invoice-from>
         <invoice-to :invoiceTemplate="invoiceTemplate"></invoice-to>
@@ -18,9 +17,8 @@
         <!-- CALC SECTION -->
         <section class="invoice-calc">
           <invoice-header-row :invoiceTemplate="invoiceTemplate"></invoice-header-row>
-          <!--{{ serviceRows }}-->
           <transition-group name="list" tag="ul" mode="out-in">
-            <invoice-row v-for="(service, index) in serviceRows" :service="service" :key="service.id" :index="index" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
+            <invoice-row v-for="(service, index) in invoiceTemplate.services" :service="service" :key="service.id" :index="index" v-on:removeRow="removeInvoiceRow(index)"></invoice-row>
           </transition-group>
           <a href="#" class="invoice-calc-add-row-btn" @click="addInvoiceRow">+</a>
         </section>
@@ -62,15 +60,12 @@
     computed: {
       invoiceTemplate () {
         return this.$store.getters.activeInvoice
-      },
-      serviceRows () {
-        return this.$store.getters.activeInvoice.services
       }
     },
     methods: {
       addInvoiceRow (e) {
         e.preventDefault()
-        this.serviceRows.push({
+        this.$store.dispatch('addInvoiceRow', {
           id: this.$store.getters.servicesLength + 1,
           name: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].name,
           amount: this.invoiceTemplate.services[this.$store.getters.servicesLength - 1].amount,
@@ -79,7 +74,7 @@
         })
       },
       removeInvoiceRow (index) {
-        this.serviceRows.length > 1 ? this.serviceRows.splice(index, 1) : false
+        index !== 0 ? this.$store.dispatch('removeInvoiceRow', index) : false
       }
     }
   }

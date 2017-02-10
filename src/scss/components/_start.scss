@@ -5,6 +5,64 @@
   text-align: center;
   justify-content: center;
 
+  &-form {
+    display: block;
+
+    &-fieldset {
+      border: 1px solid $violet;
+      position: relative;
+    }
+
+    &-input {
+      border: 0;
+      width: 100%;
+      font-family: Museo-500;
+      text-align: center;
+      background: transparent;
+      padding-bottom: .5rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-button {
+      border: 0;
+      background: transparent;
+      color: $white;
+      width: 0;
+      height: 0;
+      border-bottom: 14px solid $violet;
+      border-left: 14px solid transparent;
+      border-left: 14px solid transparent;
+      //border-top: 28px solid $violet;
+      //border-left: 50px solid transparent;
+      //border-right: 50px solid transparent;
+      //height: 0;
+      //width: 100px;
+      //box-shadow: inset 0 0 10px #000000;
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+
+      &-graphic {
+        display: inline-block;
+        transform: scaleX(.7);
+      }
+
+    }
+
+    &-legend {
+      padding: .4rem;
+    }
+  }
+
   @include breakpoint($md) {
 
     @include column(3/4, $cycle: 2);
