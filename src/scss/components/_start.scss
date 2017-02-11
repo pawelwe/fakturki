@@ -35,13 +35,6 @@
       border-bottom: 14px solid $violet;
       border-left: 14px solid transparent;
       border-left: 14px solid transparent;
-      //border-top: 28px solid $violet;
-      //border-left: 50px solid transparent;
-      //border-right: 50px solid transparent;
-      //height: 0;
-      //width: 100px;
-      //box-shadow: inset 0 0 10px #000000;
-
       position: absolute;
       right: 0;
       bottom: 0;
@@ -61,6 +54,12 @@
     &-legend {
       padding: .4rem;
     }
+
+  }
+
+  &-firebase-logged {
+    text-align: right;
+    margin-top: 3px
   }
 
   @include breakpoint($md) {

@@ -1,15 +1,10 @@
 <template>
-  {{ invoicesList }}
   <main class="invoices-thumbs" v-if="invoicesList.length > 0">
     <!-- COMPANY DATA SECTION -->
     <header>
       <h1 v-if="invoicesList.length > 0">Lista fakturek:</h1>
       <h1 v-else>Nie masz jeszcze fakturek!</h1>
     </header>
-
-    <!--{{ invoicesList }}-->
-
-    <!--{{ invoicesList.length  }}-->
 
     <ul class="invoices-thumbs-list">
       <transition-group appear name="list" mode="out-in">
@@ -87,11 +82,13 @@
         }
       },
       invoicesList () {
-//        debugger
         return this.$store.getters.invoicesList
       },
       activeInvoice () {
         return this.$store.getters.activeInvoice
+      },
+      firebaseUrl () {
+        return this.$store.getters.fireBaseUrl
       }
     },
     methods: {
@@ -105,6 +102,7 @@
       },
       deleteInvoice (index) {
         this.$store.dispatch('deleteInvoice', index)
+        this.$http.put(this.firebaseUrl + '/invoices-list.json', this.$store.getters.invoicesList)
       }
     }
   }

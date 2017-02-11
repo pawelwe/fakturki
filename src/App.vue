@@ -1,10 +1,9 @@
 <template>
   <div id="app" class="container" v-cloak>
-    <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-if="fireBaseVerified"></navigation>
+    <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-if="fireBaseVerified"></navigation>
     <transition appear name="slide-fade" mode="out-in">
       <router-view></router-view>
     </transition>
-
   </div>
 </template>
 
@@ -25,12 +24,6 @@
       },
       firebaseUrl () {
         return this.$store.getters.fireBaseUrl
-      }
-    },
-    updated () {
-      if (this.fireBaseVerified !== false) {
-        this.fetchInvoicesList()
-        this.fetchInvoiceTemplate()
       }
     },
     methods: {

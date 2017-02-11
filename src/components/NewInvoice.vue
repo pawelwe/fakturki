@@ -60,6 +60,9 @@
     computed: {
       invoiceTemplate () {
         return this.$store.getters.activeInvoice
+      },
+      firebaseUrl () {
+        return this.$store.getters.fireBaseUrl
       }
     },
     methods: {

@@ -21,7 +21,7 @@ const router = new VueRouter({
   mode: 'history'
 })
 
-var vm = new Vue({
+new Vue({
   el: '#fakturki',
   store,
   router,

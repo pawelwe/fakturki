@@ -13,6 +13,9 @@ const mutations = {
   'SET_INVOICE_TEMPLATE' (state, fetchedInvoiceTemplate) {
     state.activeInvoice = fetchedInvoiceTemplate
   },
+  'RESET_INVOICE_TEMPLATE' (state) {
+    state.activeInvoice = JSON.parse(JSON.stringify(state.savedTemplate))
+  },
   'SAVE_INVOICE_TEMPLATE' (state) {
     state.savedTemplate = JSON.parse(JSON.stringify(state.activeInvoice))
   },
@@ -35,11 +38,11 @@ const mutations = {
       state.invoicesList.splice(id, 1)
     }
   },
-  'ADD_INVOICE_ROW' (state, {id, name, ammount, priceNetto, vat}) {
+  'ADD_INVOICE_ROW' (state, {id, name, amount, priceNetto, vat}) {
     state.activeInvoice.services.push({
       id,
       name,
-      ammount,
+      amount,
       priceNetto,
       vat
     }
@@ -66,6 +69,9 @@ const actions = {
   },
   saveInvoiceTemplate: ({commit}) => {
     commit('SAVE_INVOICE_TEMPLATE')
+  },
+  resetInvoiceTemplate: ({commit}) => {
+    commit('RESET_INVOICE_TEMPLATE')
   },
   loadInvoice: ({commit}, id) => {
     commit('LOAD_INVOICE', id)
@@ -99,27 +105,19 @@ const getters = {
   },
   nettoValue: state => {
     let fullNettoValue = 0
-    let services = state.invoicesList.services
-    if (services !== undefined && services && services.length > 0) {
-      for (let i = 0; i < services.length; i++) {
-        fullNettoValue += services[i].priceNetto * services[i].amount
-      }
-      return !isNaN(fullNettoValue) ? parseFloat(fullNettoValue).toFixed(2) : 0
-    } else {
-      return 0
+    let servicesList = state.activeInvoice.services
+    for (var i = 0; i < servicesList.length; i++) {
+      fullNettoValue += servicesList[i].priceNetto * servicesList[i].amount
     }
+    return !isNaN(fullNettoValue) ? parseFloat(fullNettoValue).toFixed(2) : 0
   },
   vatValue: state => {
     let fullVatValue = 0
-    let services = state.invoicesList.services
-    if (services !== undefined && services && services.length > 0) {
-      for (let i = 0; i < services.length; i++) {
-        fullVatValue += (services[i].priceNetto / 100) * services[i].vat.replace(/%/g, '')
-      }
-      return !isNaN(fullVatValue) ? parseFloat(fullVatValue).toFixed(2) : 0
-    } else {
-      return 0
+    let servicesList = state.activeInvoice.services
+    for (var i = 0; i < servicesList.length; i++) {
+      fullVatValue += ((servicesList[i].priceNetto / 100) * servicesList[i].vat.replace(/%/g, ''))
     }
+    return !isNaN(fullVatValue) ? parseFloat(fullVatValue).toFixed(2) : 0
   },
   bruttoValue: (state, getters) => {
     return (parseFloat(getters.nettoValue) + parseFloat(getters.vatValue)).toFixed(2)

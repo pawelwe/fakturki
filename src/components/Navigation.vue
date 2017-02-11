@@ -20,7 +20,7 @@
             <a href="#" class="main-nav-menu-list-item-link" @click="saveInvoice($route.params.id - 1, $event)">Zapisz</a>
           </li>
         </transition-group>
-        <li class="main-nav-menu-list-item" key="5" @click="resetTemplate">
+        <li class="main-nav-menu-list-item" key="5" @click="loadInvoices">
           <router-link class="main-nav-menu-list-item-link" to="/lista-fakturek">Lista</router-link>
         </li>
       </ul>
@@ -65,7 +65,7 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoiceTemplate', that.$store.getters.activeInvoice)
-              that.$http.put(this.firebaseUrl + 'invoice-template.json', that.$store.getters.activeInvoice)
+              that.$http.put(that.firebaseUrl + '/invoice-template.json', that.$store.getters.activeInvoice)
             }
           }
         })
@@ -79,6 +79,7 @@
           message: 'Nowa Fakturka?',
           callback: function (value) {
             if (value) {
+              e.preventDefault()
               that.$emit('resetTemplate')
             }
           }
@@ -87,6 +88,10 @@
       resetTemplate (e) {
         e.preventDefault()
         this.$emit('resetTemplate')
+      },
+      loadInvoices (e) {
+        e.preventDefault()
+        this.$emit('fetchInvoicesList')
       },
       saveInvoice (invoiceId, e) {
         e.preventDefault()
@@ -98,7 +103,7 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoice', invoiceId)
-              that.$http.put(this.firebaseUrl + 'invoices-list.json', that.$store.getters.invoicesList)
+              that.$http.put(that.firebaseUrl + '/invoices-list.json', that.$store.getters.invoicesList)
                 .then(response => {
                   console.log(response)
                 }, error => {
