@@ -32,7 +32,7 @@
         return this.$store.getters.fireBaseUrl
       }
     },
-    created: function () {
+    created: () => {
       console.info('Start Fakturki...')
     },
     methods: {

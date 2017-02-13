@@ -23,6 +23,10 @@
         <li class="main-nav-menu-list-item" key="5" @click="loadInvoices">
           <router-link class="main-nav-menu-list-item-link" to="/lista-fakturek">Lista</router-link>
         </li>
+        <li class="main-nav-menu-list-item" key="6">
+          <a href="#" @click="clearLocalStorage" class="main-nav-menu-list-item-link">Wyczyść dane</a>
+        </li>
+
       </ul>
     </nav>
     <footer class="main-nav-footer">
@@ -102,7 +106,24 @@
             }
           }
         })
+      },
+      clearLocalStorage (e) {
+        e.preventDefault()
+        var that = this
+        vex.dialog.buttons.YES.text = 'Tak'
+        vex.dialog.buttons.NO.text = 'Nie'
+        vex.dialog.confirm({
+          message: 'Wyczyścić dane lokalne?',
+          callback: function (value) {
+            if (value) {
+              that.$store.dispatch('checkFirebaseConnection', false)
+              window.localStorage.removeItem('vuex')
+              that.$router.push('/')
+            }
+          }
+        })
       }
+
     }
   }
 </script>
