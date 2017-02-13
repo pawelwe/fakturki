@@ -37,6 +37,8 @@
         if (this.userInput.match(/firebaseio/g)) {
           this.$store.dispatch('checkFirebaseConnection', true)
           this.$store.dispatch('setFirebaseUrl', this.userInput)
+        } else {
+          this.$store.dispatch('checkFirebaseConnection', false)
         }
       }
     }
