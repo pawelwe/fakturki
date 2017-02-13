@@ -74,6 +74,10 @@
   }
 }
 
+.u-relative {
+  position: relative;
+}
+
 @include breakpoint($md) {
 
   .u-no-left-border-mobile {

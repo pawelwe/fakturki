@@ -10,7 +10,10 @@
             </button>
           </fieldset>
           <transition appear name="slide-fade" mode="out-in">
-            <p v-if="fireBaseVerified" class="start-page-firebase-logged">Firebase ready</p>
+            <section class="u-relative">
+              <span class="start-page-firebase-info" @click="firebaseInfo">?</span>
+              <p v-if="fireBaseVerified" class="start-page-firebase-logged">Firebase ready</p>
+            </section>
           </transition>
         </form>
       </section>
@@ -41,9 +44,13 @@
           this.$store.dispatch('checkFirebaseConnection', true)
           this.$store.dispatch('setFirebaseUrl', this.userInput)
         } else {
+          vex.dialog.buttons.YES.text = 'ok'
           vex.dialog.alert('Niepoprawny adres :(')
           this.$store.dispatch('checkFirebaseConnection', false)
         }
+      },
+      firebaseInfo (e) {
+        vex.dialog.alert('Konfiguracja reguł Firebase: .read / .write : true')
       }
     }
   }

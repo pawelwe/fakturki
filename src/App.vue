@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="container" v-cloak>
-    <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-on:saveTemplate="sendTemplate()" v-on:saveInvoicesList="sendInvoicesList()" v-if="fireBaseVerified"></navigation>
+    <transition appear name="slide-fade" mode="out-in">
+      <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-on:saveTemplate="sendTemplate()" v-on:saveInvoicesList="sendInvoicesList()" v-if="fireBaseVerified"></navigation>
+    </transition>
     <transition appear name="slide-fade" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -15,10 +17,6 @@
   import vexdialog from 'vex-dialog/src/vex.dialog'
   vex.defaultOptions.className = 'vex-theme-wireframe'
   vex.registerPlugin(vexdialog)
-//  import vex from 'vex-js/src/vex'
-//  import vexdialog from 'vex-dialog/src/vex.dialog'
-//  vex.registerPlugin(vexdialog)
-//  vex.defaultOptions.className = 'vex-theme-wireframe'
 
   export default {
     name: 'app',
