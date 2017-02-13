@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container" v-cloak>
+  <div id="app" class="container container_main" v-cloak>
     <transition appear name="slide-fade" mode="out-in">
       <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-on:saveTemplate="sendTemplate()" v-on:saveInvoicesList="sendInvoicesList()" v-if="fireBaseVerified"></navigation>
     </transition>
