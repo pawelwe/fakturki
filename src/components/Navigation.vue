@@ -36,8 +36,6 @@
 <script>
   import vex from 'vex-js/src/vex'
   import vexdialog from 'vex-dialog/src/vex.dialog'
-  vex.registerPlugin(vexdialog)
-  vex.defaultOptions.className = 'vex-theme-wireframe'
 
   export default {
     data () {

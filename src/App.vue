@@ -11,6 +11,14 @@
   import navigation from './components/Navigation.vue'
   import newInvoice from './components/NewInvoice.vue'
   import staticInvoiceTemplate from './data/invoiceTemplate'
+  import vex from 'vex-js/src/vex'
+  import vexdialog from 'vex-dialog/src/vex.dialog'
+  vex.defaultOptions.className = 'vex-theme-wireframe'
+  vex.registerPlugin(vexdialog)
+//  import vex from 'vex-js/src/vex'
+//  import vexdialog from 'vex-dialog/src/vex.dialog'
+//  vex.registerPlugin(vexdialog)
+//  vex.defaultOptions.className = 'vex-theme-wireframe'
 
   export default {
     name: 'app',
@@ -36,10 +44,14 @@
             return response.json()
           }, (error) => {
             console.log(error)
+            vex.dialog.alert('Błąd przy wczytywaniu danych...')
           })
           .then(data => {
             this.$store.dispatch('setInvoicesList', data !== null ? data : [])
-          }, (error) => { console.log(error) })
+          }, (error) => {
+            console.log(error)
+            vex.dialog.alert('Błąd przy wczytywaniu danych...')
+          })
       },
       fetchInvoiceTemplate () {
         this.$http.get(`${this.firebaseUrl}/invoice-template.json`)
@@ -47,6 +59,7 @@
             return response.json()
           }, (error) => {
             console.log(error)
+            vex.dialog.alert('Błąd przy wczytywaniu danych...')
           })
           .then(data => {
             if (data !== null) {
@@ -56,6 +69,7 @@
             }
           }, (error) => {
             console.log(error)
+            vex.dialog.alert('Błąd przy wczytywaniu danych...')
           })
       },
       sendTemplate () {
@@ -64,6 +78,7 @@
             console.log(response)
           }, error => {
             console.log(error)
+            vex.dialog.alert('Błąd przy wczytywaniu danych...')
           })
       },
       sendInvoicesList () {
@@ -72,6 +87,7 @@
             console.log(response)
           }, error => {
             console.log(error)
+            vex.dialog.alert('Błąd przy wczytywaniu danych...')
           })
       }
     }

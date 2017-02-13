@@ -17,6 +17,9 @@
     </main>
 </template>
 <script>
+  import vex from 'vex-js/src/vex'
+  import vexdialog from 'vex-dialog/src/vex.dialog'
+
   export default {
     data: function () {
       return {
@@ -38,6 +41,7 @@
           this.$store.dispatch('checkFirebaseConnection', true)
           this.$store.dispatch('setFirebaseUrl', this.userInput)
         } else {
+          vex.dialog.alert('Niepoprawny adres :(')
           this.$store.dispatch('checkFirebaseConnection', false)
         }
       }
