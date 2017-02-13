@@ -1,5 +1,5 @@
 <template>
-  <main class="invoices-thumbs" v-if="invoicesList.length > 0">
+  <main class="invoices-thumbs">
     <!-- COMPANY DATA SECTION -->
     <header>
       <h1 v-if="invoicesList.length > 0">Lista fakturek:</h1>
