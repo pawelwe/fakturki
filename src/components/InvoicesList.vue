@@ -63,6 +63,8 @@
   import calcSummary from './invoices-list/InvoiceThumbCalcSummary'
   import mainSummary from './invoices-list/InvoiceThumbMainSummary'
   import {mapActions} from 'vuex'
+  import vex from 'vex-js/src/vex'
+  import vexdialog from 'vex-dialog/src/vex.dialog'
 
   export default {
     components: {
@@ -104,8 +106,18 @@
         this.$router.push(`fakturka-${parseInt(index + 1)}`)
       },
       deleteInvoice (index) {
-        this.$store.dispatch('deleteInvoice', index)
-        this.$http.put(this.firebaseUrl + '/invoices-list.json', this.$store.getters.invoicesList)
+        var that = this
+        vex.dialog.buttons.YES.text = 'Tak'
+        vex.dialog.buttons.NO.text = 'Nie'
+        vex.dialog.confirm({
+          message: 'Na pewno skasować fakturkę?',
+          callback: function (value) {
+            if (value) {
+              that.$store.dispatch('deleteInvoice', index)
+              that.$emit('saveInvoicesList')
+            }
+          }
+        })
       }
     }
   }
