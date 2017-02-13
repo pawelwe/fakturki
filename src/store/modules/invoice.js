@@ -104,7 +104,7 @@ const getters = {
     return state.activeInvoice.services.length
   },
   nettoValue: state => {
-    let servicesList = state.activeInvoice.services
+    let servicesList = state.activeInvoice.services || []
     var totalNettoValue = servicesList.reduce((totalNettoValue, service) => {
       let serviceTotalAmount = service.priceNetto * service.amount
       return totalNettoValue + serviceTotalAmount
@@ -112,7 +112,7 @@ const getters = {
     return !isNaN(totalNettoValue) ? parseFloat(totalNettoValue).toFixed(2) : 0
   },
   vatValue: state => {
-    let servicesList = state.activeInvoice.services
+    let servicesList = state.activeInvoice.services || []
     var totalVatValue = servicesList.reduce((totalVatValue, service) => {
       let serviceTotalAmount = ((service.priceNetto / 100) * service.vat.replace(/%/g, '')) * service.amount
       return totalVatValue + serviceTotalAmount
