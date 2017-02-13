@@ -44,12 +44,13 @@
           this.$store.dispatch('checkFirebaseConnection', true)
           this.$store.dispatch('setFirebaseUrl', this.userInput.trim())
         } else {
-          vex.dialog.buttons.YES.text = 'ok'
+          vex.dialog.buttons.YES.text = 'Zamknij okno'
           vex.dialog.alert('Niepoprawny adres :(')
           this.$store.dispatch('checkFirebaseConnection', false)
         }
       },
       firebaseInfo (e) {
+        vex.dialog.buttons.YES.text = 'Zamknij okno'
         vex.dialog.alert('Konfiguracja reguł Firebase: .read / .write : true')
       }
     }
