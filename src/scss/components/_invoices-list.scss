@@ -10,7 +10,9 @@
 }
 
 .invoice-thumb {
+  display: flex;
   position: relative;
+  min-height: 360px;
 
   &-content {
     cursor: pointer;
@@ -20,7 +22,6 @@
     background: $white;
     position: relative;
     padding: 1.33rem 1rem;
-    min-height: 280px;
     text-align: center;
     box-shadow: 5px 5px 5px rgba(0,0,0, .05);
     margin: 2rem 0 4rem;

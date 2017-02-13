@@ -1,5 +1,5 @@
 <template>
-  <main class="invoices-thumbs">
+  <main class="invoices-thumbs" v-if="fireBaseVerified">
     <!-- COMPANY DATA SECTION -->
     <header>
       <h1 v-if="invoicesList.length > 0">Lista fakturek:</h1>
@@ -89,6 +89,9 @@
       },
       firebaseUrl () {
         return this.$store.getters.fireBaseUrl
+      },
+      fireBaseVerified () {
+        return this.$store.getters.fireBaseVerified
       }
     },
     methods: {
