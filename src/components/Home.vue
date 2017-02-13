@@ -42,7 +42,7 @@
         e.preventDefault()
         if (this.userInput.match(/firebaseio/g)) {
           this.$store.dispatch('checkFirebaseConnection', true)
-          this.$store.dispatch('setFirebaseUrl', this.userInput)
+          this.$store.dispatch('setFirebaseUrl', this.userInput.trim())
         } else {
           vex.dialog.buttons.YES.text = 'ok'
           vex.dialog.alert('Niepoprawny adres :(')
