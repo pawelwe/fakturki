@@ -40,15 +40,13 @@
     methods: {
       submitFirebaseUrl (e) {
         e.preventDefault()
-        var that = this
         if (this.userInput.match(/firebaseio/g)) {
           this.$store.dispatch('checkFirebaseConnection', true)
           this.$store.dispatch('setFirebaseUrl', this.userInput.trim())
-          this.$store.dispatch('checkFirebaseConnection')
+          this.$emit('resetTemplate')
         } else {
           vex.dialog.buttons.YES.text = 'Zamknij okno'
           vex.dialog.alert('Niepoprawny adres :(')
-          this.$emit('resetTemplate')
         }
       },
       firebaseInfo (e) {
