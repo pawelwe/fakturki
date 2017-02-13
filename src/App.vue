@@ -4,7 +4,7 @@
       <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-on:saveTemplate="sendTemplate()" v-on:saveInvoicesList="sendInvoicesList()" v-if="fireBaseVerified"></navigation>
     </transition>
     <transition appear name="slide-fade" mode="out-in">
-      <router-view v-on:saveInvoicesList="sendInvoicesList()"></router-view>
+      <router-view v-on:resetTemplate="fetchInvoiceTemplate()" v-on:saveInvoicesList="sendInvoicesList()"></router-view>
     </transition>
   </div>
 </template>
@@ -34,7 +34,6 @@
     },
     created: function () {
       console.info('Start Fakturki...')
-      this.fetchInvoiceTemplate()
     },
     methods: {
       fetchInvoicesList () {
