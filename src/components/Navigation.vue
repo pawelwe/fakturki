@@ -24,7 +24,7 @@
           <router-link class="main-nav-menu-list-item-link" to="/lista-fakturek">Lista</router-link>
         </li>
         <li class="main-nav-menu-list-item" key="6">
-          <a href="#" @click="clearLocalStorage" class="main-nav-menu-list-item-link">Wyczyść dane</a>
+          <a href="#" @click="clearLocalStorage" class="main-nav-menu-list-item-link">Wyloguj</a>
         </li>
       </ul>
     </nav>
