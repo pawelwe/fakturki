@@ -34,8 +34,10 @@
     methods: {
       submitFirebaseUrl (e) {
         e.preventDefault()
-        this.$store.dispatch('checkFirebaseConnection', true)
-        this.$store.dispatch('setFirebaseUrl', this.userInput)
+        if (this.userInput.match(/firebaseio/g)) {
+          this.$store.dispatch('checkFirebaseConnection', true)
+          this.$store.dispatch('setFirebaseUrl', this.userInput)
+        }
       }
     }
   }

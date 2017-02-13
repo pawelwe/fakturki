@@ -46,9 +46,6 @@
         id: this.$route.params.id
       }
     },
-    props: [
-      'fetchInvoiceTemplate'
-    ],
     computed: {
       firebaseUrl () {
         return this.$store.getters.fireBaseUrl
@@ -65,7 +62,7 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoiceTemplate', that.$store.getters.activeInvoice)
-              that.$http.put(that.firebaseUrl + '/invoice-template.json', that.$store.getters.activeInvoice)
+              that.$emit('saveTemplate')
             }
           }
         })
@@ -103,12 +100,7 @@
           callback: function (value) {
             if (value) {
               that.$store.dispatch('saveInvoice', invoiceId)
-              that.$http.put(that.firebaseUrl + '/invoices-list.json', that.$store.getters.invoicesList)
-                .then(response => {
-                  console.log(response)
-                }, error => {
-                  console.log(error)
-                })
+              that.$emit('saveInvoicesList')
             }
           }
         })

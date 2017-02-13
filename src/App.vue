@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container" v-cloak>
-    <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-if="fireBaseVerified"></navigation>
+    <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-on:saveTemplate="sendTemplate()" v-on:saveInvoicesList="sendInvoicesList()" v-if="fireBaseVerified"></navigation>
     <transition appear name="slide-fade" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -26,9 +26,12 @@
         return this.$store.getters.fireBaseUrl
       }
     },
+    created: function () {
+      console.info('Start Fakturki...')
+    },
     methods: {
       fetchInvoicesList () {
-        this.$http.get(this.firebaseUrl + '/invoices-list.json')
+        this.$http.get(`${this.firebaseUrl}/invoices-list.json`)
           .then(response => {
             return response.json()
           }, (error) => {
@@ -39,7 +42,7 @@
           }, (error) => { console.log(error) })
       },
       fetchInvoiceTemplate () {
-        this.$http.get(this.firebaseUrl + '/invoice-template.json')
+        this.$http.get(`${this.firebaseUrl}/invoice-template.json`)
           .then(response => {
             return response.json()
           }, (error) => {
@@ -52,6 +55,22 @@
               this.$store.dispatch('setInvoiceTemplate', staticInvoiceTemplate)
             }
           }, (error) => {
+            console.log(error)
+          })
+      },
+      sendTemplate () {
+        this.$http.put(`${this.firebaseUrl}/invoice-template.json`, this.$store.getters.activeInvoice)
+          .then(response => {
+            console.log(response)
+          }, error => {
+            console.log(error)
+          })
+      },
+      sendInvoicesList () {
+        this.$http.put(`${this.firebaseUrl}/invoices-list.json`, this.$store.getters.invoicesList)
+          .then(response => {
+            console.log(response)
+          }, error => {
             console.log(error)
           })
       }

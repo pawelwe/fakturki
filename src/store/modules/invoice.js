@@ -104,20 +104,20 @@ const getters = {
     return state.activeInvoice.services.length
   },
   nettoValue: state => {
-    let fullNettoValue = 0
     let servicesList = state.activeInvoice.services
-    for (var i = 0; i < servicesList.length; i++) {
-      fullNettoValue += servicesList[i].priceNetto * servicesList[i].amount
-    }
-    return !isNaN(fullNettoValue) ? parseFloat(fullNettoValue).toFixed(2) : 0
+    var totalNettoValue = servicesList.reduce((totalNettoValue, service) => {
+      let serviceTotalAmount = service.priceNetto * service.amount
+      return totalNettoValue + serviceTotalAmount
+    }, 0)
+    return !isNaN(totalNettoValue) ? parseFloat(totalNettoValue).toFixed(2) : 0
   },
   vatValue: state => {
-    let fullVatValue = 0
     let servicesList = state.activeInvoice.services
-    for (var i = 0; i < servicesList.length; i++) {
-      fullVatValue += ((servicesList[i].priceNetto / 100) * servicesList[i].vat.replace(/%/g, ''))
-    }
-    return !isNaN(fullVatValue) ? parseFloat(fullVatValue).toFixed(2) : 0
+    var totalVatValue = servicesList.reduce((totalVatValue, service) => {
+      let serviceTotalAmount = ((service.priceNetto / 100) * service.vat.replace(/%/g, '')) * service.amount
+      return totalVatValue + serviceTotalAmount
+    }, 0)
+    return !isNaN(totalVatValue) ? parseFloat(totalVatValue).toFixed(2) : 0
   },
   bruttoValue: (state, getters) => {
     return (parseFloat(getters.nettoValue) + parseFloat(getters.vatValue)).toFixed(2)
