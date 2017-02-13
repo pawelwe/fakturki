@@ -32,8 +32,9 @@
         return this.$store.getters.fireBaseUrl
       }
     },
-    created: () => {
+    created: function () {
       console.info('Start Fakturki...')
+      this.fetchInvoiceTemplate()
     },
     methods: {
       fetchInvoicesList () {
