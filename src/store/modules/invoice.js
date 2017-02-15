@@ -14,16 +14,16 @@ const mutations = {
     state.activeInvoice = fetchedInvoiceTemplate
   },
   'RESET_INVOICE_TEMPLATE' (state) {
-    state.activeInvoice = JSON.parse(JSON.stringify(state.savedTemplate))
+    state.activeInvoice = Object.assign({}, state.savedTemplate)
   },
   'SAVE_INVOICE_TEMPLATE' (state) {
-    state.savedTemplate = JSON.parse(JSON.stringify(state.activeInvoice))
+    state.savedTemplate = Object.assign({}, state.activeInvoice)
   },
   'LOAD_INVOICE' (state, index) {
-    state.activeInvoice = JSON.parse(JSON.stringify(state.invoicesList[index]))
+    state.activeInvoice = Object.assign({}, state.invoicesList[index])
   },
   'SAVE_INVOICE' (state, id) {
-    let activeInvoice = JSON.parse(JSON.stringify(state.activeInvoice))
+    let activeInvoice = Object.assign({}, state.activeInvoice)
     if (!id && id !== 0) {
       activeInvoice.creationDate = new Date()
       activeInvoice.id = parseInt(state.invoicesList.length + 1)
