@@ -9,7 +9,7 @@
         <li class="main-nav-menu-list-item" @click="resetTemplate"  key="1"  v-if="$route.path === '/' || $route.path === '/lista-fakturek'">
           <router-link class="main-nav-menu-list-item-link" to="/nowa-fakturka">Nowa fakturka</router-link>
         </li>
-        <li class="main-nav-menu-list-item" @click="loadTemplate" key="2" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
+        <li class="main-nav-menu-list-item" @click="confirmResetTemplate" key="2" v-if="$route.path === '/nowa-fakturka' || $route.path === '/fakturka-' + $route.params.id">
           <router-link class="main-nav-menu-list-item-link" to="/nowa-fakturka">Nowa fakturka</router-link>
         </li>
         <transition-group appear name="list" mode="out-in">
@@ -20,7 +20,7 @@
             <a href="#" class="main-nav-menu-list-item-link" @click="saveInvoice($route.params.id - 1, $event)">Zapisz</a>
           </li>
         </transition-group>
-        <li class="main-nav-menu-list-item" key="5" @click="loadInvoices">
+        <li class="main-nav-menu-list-item" key="5">
           <router-link class="main-nav-menu-list-item-link" to="/lista-fakturek">Lista</router-link>
         </li>
         <li class="main-nav-menu-list-item" key="6">
@@ -68,7 +68,7 @@
           }
         })
       },
-      loadTemplate (e) {
+      confirmResetTemplate (e) {
         e.preventDefault()
         var that = this
         vex.dialog.buttons.YES.text = 'Tak'
@@ -78,18 +78,14 @@
           callback: function (value) {
             if (value) {
               e.preventDefault()
-              that.$emit('resetTemplate')
+              that.$store.dispatch('setActiveInvoice', that.$store.getters.savedTemplate)
             }
           }
         })
       },
       resetTemplate (e) {
         e.preventDefault()
-        this.$emit('resetTemplate')
-      },
-      loadInvoices (e) {
-        e.preventDefault()
-        this.$emit('fetchInvoicesList')
+        this.$store.dispatch('setActiveInvoice', this.$store.getters.savedTemplate)
       },
       saveInvoice (invoiceId, e) {
         e.preventDefault()

@@ -10,8 +10,11 @@ const mutations = {
   'SET_INVOICES_LIST' (state, fetchedInvoicesList) {
     state.invoicesList = fetchedInvoicesList
   },
+  'SET_ACTIVE_INVOICE' (state, activeInvoice) {
+    state.activeInvoice = activeInvoice
+  },
   'SET_INVOICE_TEMPLATE' (state, fetchedInvoiceTemplate) {
-    state.activeInvoice = fetchedInvoiceTemplate
+    state.savedTemplate = Object.assign({}, fetchedInvoiceTemplate)
   },
   'RESET_INVOICE_TEMPLATE' (state) {
     state.activeInvoice = Object.assign({}, state.savedTemplate)
@@ -61,6 +64,9 @@ const mutations = {
 
 // ASYNC
 const actions = {
+  setActiveInvoice: ({commit}, activeInvoice) => {
+    commit('SET_ACTIVE_INVOICE', activeInvoice)
+  },
   setInvoicesList: ({commit}, fetchedInvoicesList) => {
     commit('SET_INVOICES_LIST', fetchedInvoicesList)
   },
@@ -97,8 +103,14 @@ const actions = {
 }
 
 const getters = {
+  savedTemplate: state => {
+    return state.savedTemplate
+  },
   activeInvoice: state => {
     return state.activeInvoice
+  },
+  invoicesList: state => {
+    return state.invoicesList
   },
   servicesLength: state => {
     return state.activeInvoice.services.length
@@ -121,9 +133,6 @@ const getters = {
   },
   bruttoValue: (state, getters) => {
     return (parseFloat(getters.nettoValue) + parseFloat(getters.vatValue)).toFixed(2)
-  },
-  invoicesList: state => {
-    return state.invoicesList
   },
   fireBaseVerified: state => {
     return state.fireBaseVerified

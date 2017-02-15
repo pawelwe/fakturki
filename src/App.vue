@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="container" v-cloak>
     <transition appear name="slide-fade" mode="out-in">
-      <navigation v-on:resetTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-on:saveTemplate="sendTemplate()" v-on:saveInvoicesList="sendInvoicesList()" v-if="fireBaseVerified"></navigation>
+      <navigation v-on:saveTemplate="sendTemplate()"  v-on:fetchInvoicesList="fetchInvoicesList()" v-on:saveInvoicesList="sendInvoicesList()" v-if="fireBaseVerified"></navigation>
     </transition>
     <transition appear name="slide-fade" mode="out-in">
-      <router-view v-on:resetTemplate="fetchInvoiceTemplate()" v-on:saveInvoicesList="sendInvoicesList()"></router-view>
+      <router-view v-on:loadTemplate="fetchInvoiceTemplate()" v-on:fetchInvoicesList="fetchInvoicesList()" v-on:saveInvoicesList="sendInvoicesList()"></router-view>
     </transition>
   </div>
 </template>
@@ -61,8 +61,10 @@
           })
           .then(data => {
             if (data !== null) {
+              this.$store.dispatch('setActiveInvoice', data)
               this.$store.dispatch('setInvoiceTemplate', data)
             } else {
+              this.$store.dispatch('setActiveInvoice', staticInvoiceTemplate)
               this.$store.dispatch('setInvoiceTemplate', staticInvoiceTemplate)
             }
           }, (error) => {
